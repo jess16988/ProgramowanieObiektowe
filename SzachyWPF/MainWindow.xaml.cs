@@ -81,16 +81,16 @@ namespace SzachyWPF
                 zaznacz(przycisk);
                 x1 = pozycja[0];
                 y1 = pozycja[1];
-                if (plansza.IleRuchow() % 2 == 0) zaznaczPola(x1, y1, "1");
-                else zaznaczPola(x1, y1, "2");
+                if (plansza.IleRuchow() % 2 == 0) zaznaczPola(x1, y1, Gracz.CZARNE);
+                else zaznaczPola(x1, y1, Gracz.BIALE);
             }
             else
             {             
                 odznaczWszystko();
                 x2 = pozycja[0];
                 y2 = pozycja[1];
-                if (plansza.IleRuchow() % 2 == 0) plansza.RuszGlowny(x1, y1, x2, y2, "1");
-                else plansza.RuszGlowny(x1, y1, x2, y2, "2");
+                if (plansza.IleRuchow() % 2 == 0) plansza.RuszGlowny(x1, y1, x2, y2, Gracz.CZARNE);
+                else plansza.RuszGlowny(x1, y1, x2, y2, Gracz.BIALE);
                 rysujPlansze();
                 rysujPojemniki();
                 x1 = -10;
@@ -153,29 +153,29 @@ namespace SzachyWPF
             if(pole.ZwrocSymbol() != " ")
             {
                 
-                if (pole is Pionek && pole.ZwrocGracza() == "1")
+                if (pole is Pionek && pole.ZwrocGracza() == Gracz.CZARNE)
                     return obrazki[0];
-                else if (pole is Pionek && pole.ZwrocGracza() == "2")
+                else if (pole is Pionek && pole.ZwrocGracza() == Gracz.BIALE)
                     return obrazki[6];
-                else if (pole is Skoczek && pole.ZwrocGracza() == "1")
+                else if (pole is Skoczek && pole.ZwrocGracza() == Gracz.CZARNE)
                     return obrazki[1];
-                else if (pole is Skoczek && pole.ZwrocGracza() == "2")
+                else if (pole is Skoczek && pole.ZwrocGracza() == Gracz.BIALE)
                     return obrazki[7];
-                else if (pole is Goniec && pole.ZwrocGracza() == "1")
+                else if (pole is Goniec && pole.ZwrocGracza() == Gracz.CZARNE)
                     return obrazki[2];
-                else if (pole is Goniec && pole.ZwrocGracza() == "2")
+                else if (pole is Goniec && pole.ZwrocGracza() == Gracz.BIALE)
                     return obrazki[8];
-                else if (pole is Wieza && pole.ZwrocGracza() == "1")
+                else if (pole is Wieza && pole.ZwrocGracza() == Gracz.CZARNE)
                     return obrazki[3];
-                else if (pole is Wieza && pole.ZwrocGracza() == "2")
+                else if (pole is Wieza && pole.ZwrocGracza() == Gracz.BIALE)
                     return obrazki[9];
-                else if (pole is Krol && pole.ZwrocGracza() == "1")
+                else if (pole is Krol && pole.ZwrocGracza() == Gracz.CZARNE)
                     return obrazki[4];
-                else if (pole is Krol && pole.ZwrocGracza() == "2")
+                else if (pole is Krol && pole.ZwrocGracza() == Gracz.BIALE)
                     return obrazki[10];
-                else if (pole is Hetman && pole.ZwrocGracza() == "1")
+                else if (pole is Hetman && pole.ZwrocGracza() == Gracz.CZARNE)
                     return obrazki[5];
-                else if (pole is Hetman && pole.ZwrocGracza() == "2")
+                else if (pole is Hetman && pole.ZwrocGracza() == Gracz.BIALE)
                     return obrazki[11];           
             }
             else
@@ -200,7 +200,7 @@ namespace SzachyWPF
                 pola[1, i].Content = obrazkiDlaPol[1,i];
             }
         }
-        private void zaznaczPola(int x1, int y1, string gracz)
+        private void zaznaczPola(int x1, int y1, Gracz gracz)
         {
             Pole[,] pionki = plansza.Zwroc();
             for (int i = 0; i < 8; i++)

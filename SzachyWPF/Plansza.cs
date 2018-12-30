@@ -18,26 +18,26 @@ namespace SzachyWPF
                     this.plansza[i, j] = poleBezPionka;
                 }
             }
-            plansza[3, 0] = new Hetman("2");
-            plansza[4, 0] = new Krol("2", 4, 0);
-            plansza[5, 0] = new Goniec("2");
-            plansza[2, 0] = new Goniec("2");
-            plansza[6, 0] = new Skoczek("2");
-            plansza[1, 0] = new Skoczek("2");
-            plansza[0, 0] = new Wieza("2");
-            plansza[7, 0] = new Wieza("2");
-            plansza[4, 7] = new Hetman("1");
-            plansza[3, 7] = new Krol("1", 3, 7);
-            plansza[5, 7] = new Goniec("1");
-            plansza[2, 7] = new Goniec("1");
-            plansza[6, 7] = new Skoczek("1");
-            plansza[1, 7] = new Skoczek("1");
-            plansza[0, 7] = new Wieza("1");
-            plansza[7, 7] = new Wieza("1");
+            plansza[3, 0] = new Hetman(Gracz.BIALE);
+            plansza[4, 0] = new Krol(Gracz.BIALE, 4, 0);
+            plansza[5, 0] = new Goniec(Gracz.BIALE);
+            plansza[2, 0] = new Goniec(Gracz.BIALE);
+            plansza[6, 0] = new Skoczek(Gracz.BIALE);
+            plansza[1, 0] = new Skoczek(Gracz.BIALE);
+            plansza[0, 0] = new Wieza(Gracz.BIALE);
+            plansza[7, 0] = new Wieza(Gracz.BIALE);
+            plansza[4, 7] = new Hetman(Gracz.CZARNE);
+            plansza[3, 7] = new Krol(Gracz.CZARNE, 3, 7);
+            plansza[5, 7] = new Goniec(Gracz.CZARNE);
+            plansza[2, 7] = new Goniec(Gracz.CZARNE);
+            plansza[6, 7] = new Skoczek(Gracz.CZARNE);
+            plansza[1, 7] = new Skoczek(Gracz.CZARNE);
+            plansza[0, 7] = new Wieza(Gracz.CZARNE);
+            plansza[7, 7] = new Wieza(Gracz.CZARNE);
             for (int i = 0; i < 8; i++)
             {
-                plansza[i, 6] = new Pionek("1");
-                plansza[i, 1] = new Pionek("2");
+                plansza[i, 6] = new Pionek(Gracz.CZARNE);
+                plansza[i, 1] = new Pionek(Gracz.BIALE);
             }
             kontrolki = new Kontrolki(this);
             ai = new AI();
@@ -45,7 +45,7 @@ namespace SzachyWPF
         //pola
 
         private AI ai;
-        private Pole poleBezPionka = new Pole("0");
+        private Pole poleBezPionka = new Pole(null);
         public Kontrolki kontrolki; 
         private Pole[,] plansza = new Pole[8, 8];
         private int licznikRuchow = 0;
@@ -54,7 +54,7 @@ namespace SzachyWPF
         private Stack<Pole> pojemnikNaFigury2 = new Stack<Pole>();
 
         //metody
-        public bool RuszGlowny(int x1, int y1, int x2, int y2, string gracz)
+        public bool RuszGlowny(int x1, int y1, int x2, int y2, Gracz gracz)
         {
             if (SprawdzCalyRuch(x1, y1, x2, y2, gracz) == true)
             {
@@ -65,7 +65,7 @@ namespace SzachyWPF
             }
             return false;
         }
-        public bool SprawdzCalyRuch(int x1, int y1, int x2, int y2, string gracz)
+        public bool SprawdzCalyRuch(int x1, int y1, int x2, int y2, Gracz? gracz)
         {
             if (sprawdzCalyRuchZaWyjatkiemKrola(x1, y1, x2, y2, gracz) == true)
             {
@@ -96,7 +96,7 @@ namespace SzachyWPF
             else return false;
         }
         
-        private bool sprawdzCalyRuchZaWyjatkiemKrola(int x1, int y1, int x2, int y2, string gracz)
+        private bool sprawdzCalyRuchZaWyjatkiemKrola(int x1, int y1, int x2, int y2, Gracz? gracz)
         {
             if (x1 < 0 || x1 > 7 || y1 < 0 || y1 > 7 || x2 < 0 || x2 > 7 || y2 < 0 || y2 > 7) return false;
             if (sprawdzKolizje(x1, y1, x2, y2) == true && sprawdzGracza(x1, y1, x2, y2, gracz) == true)
@@ -120,8 +120,8 @@ namespace SzachyWPF
         }
         private bool sprawdzBicie(int x1, int y1, int x2, int y2)
         {
-            if ((plansza[x1, y1].ZwrocGracza() == "1" && plansza[x2, y2].ZwrocGracza() == "2") ||
-                (plansza[x1, y1].ZwrocGracza() == "2" && plansza[x2, y2].ZwrocGracza() == "1")) return true;
+            if ((plansza[x1, y1].ZwrocGracza() == Gracz.CZARNE && plansza[x2, y2].ZwrocGracza() == Gracz.BIALE) ||
+                (plansza[x1, y1].ZwrocGracza() == Gracz.BIALE && plansza[x2, y2].ZwrocGracza() == Gracz.CZARNE)) return true;
             else return false;
         }
         private bool sprawdzKolizje(int x1, int y1, int x2, int y2)
@@ -136,7 +136,7 @@ namespace SzachyWPF
             }
             return true;
         }
-        private bool sprawdzGracza(int x1, int y1, int x2, int y2, string gracz)
+        private bool sprawdzGracza(int x1, int y1, int x2, int y2, Gracz? gracz)
         {
             if (plansza[x1, y1].ZwrocGracza() == plansza[x2, y2].ZwrocGracza() || plansza[x1, y1].ZwrocGracza() != gracz) return false;
             else return true;
@@ -155,8 +155,8 @@ namespace SzachyWPF
                 plansza[ruch.x1, ruch.y1] = ruch.polePierwsze as Pole;
                 plansza[ruch.x2, ruch.y2] = ruch.poleDrugie as Pole;
                 licznikRuchow--;
-                if (ruch.polePierwsze is Pionek && (ruch.y1 == 1 && (ruch.polePierwsze as Pionek).ZwrocGracza()=="2"
-                    || ruch.y1 == 6 && (ruch.polePierwsze as Pionek).ZwrocGracza() == "1"))
+                if (ruch.polePierwsze is Pionek && (ruch.y1 == 1 && (ruch.polePierwsze as Pionek).ZwrocGracza()== Gracz.BIALE
+                    || ruch.y1 == 6 && (ruch.polePierwsze as Pionek).ZwrocGracza() == Gracz.CZARNE))
                 {
                     (ruch.polePierwsze as Pionek).cofnijPierwszyRuch();
                 }
@@ -178,7 +178,7 @@ namespace SzachyWPF
             licznikRuchow++;
             kontrolki.Sprawdz();
         }
-        private bool czyRuchNieOdkrylKrola(int x1Krola1, int y1Krola1, string gracz)
+        private bool czyRuchNieOdkrylKrola(int x1Krola1, int y1Krola1, Gracz? gracz)
         {
             bool szach = false;
             for (int i = 0; i < 8; i++)
@@ -198,13 +198,13 @@ namespace SzachyWPF
         
         private void zbitaFiguraDoPijemnika(Pole figura)
         {
-            if (figura.ZwrocGracza() == "1") pojemnikNaFigury1.Push(figura);
-            else if (figura.ZwrocGracza() == "2") pojemnikNaFigury2.Push(figura);
+            if (figura.ZwrocGracza() == Gracz.CZARNE) pojemnikNaFigury1.Push(figura);
+            else if (figura.ZwrocGracza() == Gracz.BIALE) pojemnikNaFigury2.Push(figura);
         }
         private void figuraZPojemnika(Pole figura)
         {
-            if (figura.ZwrocGracza() == "1") pojemnikNaFigury1.Pop();
-            else if (figura.ZwrocGracza() == "2") pojemnikNaFigury2.Pop();
+            if (figura.ZwrocGracza() == Gracz.CZARNE) pojemnikNaFigury1.Pop();
+            else if (figura.ZwrocGracza() == Gracz.BIALE) pojemnikNaFigury2.Pop();
         }
         private bool czyPojemnikSieWypelnil()
         {
@@ -248,7 +248,7 @@ namespace SzachyWPF
         private int OcenWartoscPola(Pole pole, int kontrolna)
         {
             
-            if (pole.ZwrocGracza() == "2") kontrolna = -kontrolna;
+            if (pole.ZwrocGracza() == Gracz.BIALE) kontrolna = -kontrolna;
             
             
             if (pole is Pionek) return (kontrolna * 10);
@@ -259,7 +259,7 @@ namespace SzachyWPF
             else if (pole is Krol) return (kontrolna * 900);
             else return 0;
         }
-        public List<RuchAI> ZwrocWszystkieMozliweRuchy(string gracz)
+        public List<RuchAI> ZwrocWszystkieMozliweRuchy(Gracz gracz)
         {
             List<RuchAI> ruchy = new List<RuchAI>();
      

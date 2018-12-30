@@ -18,7 +18,7 @@ namespace SzachyWPF
         public int y1Krola1 = 0;
         public int x2Krola2 = -1;
         public int y2Krola2 = -1;
-        private string gracz = "";
+        private Gracz? gracz = null;
         public bool czySzach = false;
         public bool czyMat = false;
         public bool czyPat = false;
@@ -27,7 +27,7 @@ namespace SzachyWPF
         private Pole[,] pola;
 
         //metody
-        public void znajdzKroli(string gracz)
+        public void znajdzKroli(Gracz? gracz)
         {
             this.gracz = gracz;
             for (int i = 0; i < 8; i++)

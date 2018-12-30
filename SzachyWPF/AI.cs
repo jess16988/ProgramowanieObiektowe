@@ -14,7 +14,7 @@ namespace SzachyWPF
 
         private RuchAI zwrocNajlepszyRuchZPierwszejPlanszy(Plansza plansza)
         {
-            List<RuchAI> ruchy = plansza.ZwrocWszystkieMozliweRuchy("2");
+            List<RuchAI> ruchy = plansza.ZwrocWszystkieMozliweRuchy(Gracz.BIALE);
             int max = -1000;           
             RuchAI najlepszyRuch = ruch0;
             RuchAI drugi;
@@ -43,7 +43,7 @@ namespace SzachyWPF
         }
         private RuchAI zwrocNajlepszyRuchZKolejnej(Plansza plansza)
         {
-            List<RuchAI> ruchy = plansza.ZwrocWszystkieMozliweRuchy("1");
+            List<RuchAI> ruchy = plansza.ZwrocWszystkieMozliweRuchy(Gracz.CZARNE);
             int max = -1000;
             RuchAI najlepszyRuch = ruch0;
             //int aktualna;

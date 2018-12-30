@@ -8,13 +8,13 @@ namespace SzachyWPF
 {
    public class Pole
     {
-        public Pole(string gracz)
+        public Pole(Gracz? gracz)
         {
             this.gracz = gracz;
         }
         //pola
         protected string symbol = " ";
-        protected string gracz;
+        protected Gracz? gracz;
 
         //metody
         public virtual bool SprawdzRuchNaPustejPlanszy(int x1, int y1, int x2, int y2)
@@ -31,7 +31,7 @@ namespace SzachyWPF
         {
             return symbol;
         }
-        public string ZwrocGracza()
+        public Gracz? ZwrocGracza()
         {
             return gracz;
         }

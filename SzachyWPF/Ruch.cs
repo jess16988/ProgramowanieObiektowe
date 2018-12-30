@@ -8,10 +8,10 @@ namespace SzachyWPF
 {
     public class Ruch
     {
-        public Pole polePierwsze { get; } = new Pole(" ");
+        public Pole polePierwsze { get; } = new Pole(null);
         public int x1 { get; }
         public int y1 { get; }
-        public Pole poleDrugie { get; } = new Pole(" ");
+        public Pole poleDrugie { get; } = new Pole(null);
         public int x2 { get; }
         public int y2 { get; }
 
