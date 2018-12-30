@@ -84,7 +84,6 @@
     <Compile Include="Pionek.cs" />
     <Compile Include="Plansza.cs" />
     <Compile Include="Pole.cs" />
-    <Compile Include="Glowny.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
