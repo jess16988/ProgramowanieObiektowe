@@ -54,63 +54,6 @@ namespace SzachyWPF
         private Stack<Pole> pojemnikNaFigury2 = new Stack<Pole>();
 
         //metody
-        /* public void Rysuj()
-         {
-             bool kontrolna = false;
-             Console.ForegroundColor = ConsoleColor.White;
-             Console.Clear();
-             //licznik ruchow
-             Console.WriteLine("Gracz: " + (licznikRuchow % 2 + 1) + "\nRuch: " + ((licznikRuchow / 2) + 1) + "\n");
-             //pojemnik gracza 1
-             foreach (var figura in pojemnikNaFigury1)
-             {
-                 Console.Write(figura + " ");
-             }
-             Console.WriteLine("\n");
-
-             //plansza
-             Console.Write("   ");
-             for (int i = 0; i < 8; i++)
-             {
-
-                 if (i < 9) Console.Write(i + 1 + "  ");
-                 else Console.Write((i + 1) + " ");
-             }
-             Console.Write("\n");
-             for (int i = 0; i < 8; i++)
-             {
-                 Console.BackgroundColor = ConsoleColor.Black;
-                 if (i < 9) Console.Write((i + 1) + "  ");
-                 else Console.Write((i + 1 + " "));
-                 for (int j = 0; j < 8; j++)
-                 {
-                     if (kontrolna == false)
-                     {
-                         Console.BackgroundColor = ConsoleColor.DarkGray;
-                         kontrolna = true;
-                     }
-                     else
-                     {
-                         Console.BackgroundColor = ConsoleColor.Black;
-                         kontrolna = false;
-                     }
-                     Console.Write(plansza[j, i].ZwrocSymbol() + plansza[j, i].ZwrocGracza() + " ");
-                 }
-                 Console.Write("\n");
-                 if (kontrolna == true) kontrolna = false;
-                 else kontrolna = true;
-             }
-             Console.WriteLine("");
-
-             //pojemnik gracza 2
-             Console.ResetColor();
-             foreach (var figura in pojemnikNaFigury2)
-             {
-                 Console.Write(figura + " ");
-             }
-             Console.WriteLine("\n");
-         }*/
-
         public bool RuszGlowny(int x1, int y1, int x2, int y2, string gracz)
         {
             if (SprawdzCalyRuch(x1, y1, x2, y2, gracz) == true)
