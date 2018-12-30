@@ -121,30 +121,6 @@ namespace SzachyWPF
                 }
             }
             return true;
-        }
-        private bool sprawdzCzyPat()//gracz ktory ostatnio sie poruszyl
-        {
-            string gracz2;
-            if (gracz == "1") gracz2 = "2";
-            else gracz2 = "1";
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    for (int k = 0; k < 8; k++)
-                    {
-                        for (int l = 0; l < 8; l++)
-                        {
-                            if (plansza.SprawdzCalyRuch(i, j, k, l, gracz2) == true)
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                }
-            }
-            return true;
-        }
-
+        }        
     }
 }
