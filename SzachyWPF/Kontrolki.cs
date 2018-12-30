@@ -21,6 +21,8 @@ namespace SzachyWPF
         private string gracz = "";
         public bool czySzach = false;
         public bool czyMat = false;
+        public bool czyPat = false;
+        public bool czyKoniec = false;
         private Plansza plansza;
         private Pole[,] pola;
 
