@@ -101,7 +101,7 @@ namespace SzachyWPF
                 
             }
             //sprawdzam czy nie da sie zagrodzic atakujacego
-            if (pola[yAtakujacego, yAtakujacego] is Laufer || pola[yAtakujacego, yAtakujacego] is Wieza || pola[yAtakujacego, yAtakujacego] is Dama)
+            if (pola[yAtakujacego, yAtakujacego] is Goniec || pola[yAtakujacego, yAtakujacego] is Wieza || pola[yAtakujacego, yAtakujacego] is Hetman)
             {
                 int[,] tablica = Prosta.ZwrocPunktyKolizji(xAtakujacego, yAtakujacego, xKrola, yKrola);
                 int x = 0;

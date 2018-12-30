@@ -16,7 +16,7 @@ namespace SzachyWPF
             this.stosRuchow.Push(new Ruch(x1, y1, pole1, x2, y2, pole2));
         }
         public Ruch WyciagnijPozycje()
-        {
+        {   
             if (stosRuchow.Count == 0)
             {
                 //Console.WriteLine("Nie wykonano zadnego ruchu");

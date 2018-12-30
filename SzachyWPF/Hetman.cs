@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
-    class Dama : Pole
+    class Hetman : Pole
     {
-        public Dama(string gracz) : base(gracz)
+        public Hetman(string gracz) : base(gracz)
         {
             this.symbol = "Q";
         }

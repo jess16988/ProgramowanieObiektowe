@@ -18,20 +18,20 @@ namespace SzachyWPF
                     this.plansza[i, j] = poleBezPionka;
                 }
             }
-            plansza[3, 0] = new Dama("2");
+            plansza[3, 0] = new Hetman("2");
             plansza[4, 0] = new Krol("2", 4, 0);
-            plansza[5, 0] = new Laufer("2");
-            plansza[2, 0] = new Laufer("2");
-            plansza[6, 0] = new Goniec("2");
-            plansza[1, 0] = new Goniec("2");
+            plansza[5, 0] = new Goniec("2");
+            plansza[2, 0] = new Goniec("2");
+            plansza[6, 0] = new Skoczek("2");
+            plansza[1, 0] = new Skoczek("2");
             plansza[0, 0] = new Wieza("2");
             plansza[7, 0] = new Wieza("2");
-            plansza[4, 7] = new Dama("1");
+            plansza[4, 7] = new Hetman("1");
             plansza[3, 7] = new Krol("1", 3, 7);
-            plansza[5, 7] = new Laufer("1");
-            plansza[2, 7] = new Laufer("1");
-            plansza[6, 7] = new Goniec("1");
-            plansza[1, 7] = new Goniec("1");
+            plansza[5, 7] = new Goniec("1");
+            plansza[2, 7] = new Goniec("1");
+            plansza[6, 7] = new Skoczek("1");
+            plansza[1, 7] = new Skoczek("1");
             plansza[0, 7] = new Wieza("1");
             plansza[7, 7] = new Wieza("1");
             for (int i = 0; i < 8; i++)
@@ -126,7 +126,7 @@ namespace SzachyWPF
         }
         private bool sprawdzKolizje(int x1, int y1, int x2, int y2)
         {
-            if (plansza[x1, y1] is Goniec || plansza[x1, y1] is Krol) return true;
+            if (plansza[x1, y1] is Skoczek || plansza[x1, y1] is Krol) return true;
             int[,] tablica = Prosta.ZwrocPunktyKolizji(x1, y1, x2, y2);
             int x = 0;
             while (tablica[0, x] != 100 && tablica[1, x] != 100)
@@ -252,10 +252,10 @@ namespace SzachyWPF
             
             
             if (pole is Pionek) return (kontrolna * 10);
-            else if (pole is Laufer) return (kontrolna * 30);
             else if (pole is Goniec) return (kontrolna * 30);
+            else if (pole is Skoczek) return (kontrolna * 30);
             else if (pole is Wieza) return (kontrolna * 50);
-            else if (pole is Dama) return (kontrolna * 90);
+            else if (pole is Hetman) return (kontrolna * 90);
             else if (pole is Krol) return (kontrolna * 900);
             else return 0;
         }

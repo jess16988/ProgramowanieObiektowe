@@ -157,13 +157,13 @@ namespace SzachyWPF
                     return obrazki[0];
                 else if (pole is Pionek && pole.ZwrocGracza() == "2")
                     return obrazki[6];
-                else if (pole is Goniec && pole.ZwrocGracza() == "1")
+                else if (pole is Skoczek && pole.ZwrocGracza() == "1")
                     return obrazki[1];
-                else if (pole is Goniec && pole.ZwrocGracza() == "2")
+                else if (pole is Skoczek && pole.ZwrocGracza() == "2")
                     return obrazki[7];
-                else if (pole is Laufer && pole.ZwrocGracza() == "1")
+                else if (pole is Goniec && pole.ZwrocGracza() == "1")
                     return obrazki[2];
-                else if (pole is Laufer && pole.ZwrocGracza() == "2")
+                else if (pole is Goniec && pole.ZwrocGracza() == "2")
                     return obrazki[8];
                 else if (pole is Wieza && pole.ZwrocGracza() == "1")
                     return obrazki[3];
@@ -173,9 +173,9 @@ namespace SzachyWPF
                     return obrazki[4];
                 else if (pole is Krol && pole.ZwrocGracza() == "2")
                     return obrazki[10];
-                else if (pole is Dama && pole.ZwrocGracza() == "1")
+                else if (pole is Hetman && pole.ZwrocGracza() == "1")
                     return obrazki[5];
-                else if (pole is Dama && pole.ZwrocGracza() == "2")
+                else if (pole is Hetman && pole.ZwrocGracza() == "2")
                     return obrazki[11];           
             }
             else
