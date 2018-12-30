@@ -40,7 +40,7 @@ namespace SzachyWPF
                 plansza[i, 1] = new Pionek("2");
             }
             kontrolki = new Kontrolki(this);
-            ai = new AI(this);
+            ai = new AI();
         }
         //pola
 

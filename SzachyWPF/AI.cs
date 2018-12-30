@@ -8,10 +8,6 @@ namespace SzachyWPF
 {
     class AI
     {
-        public AI(Plansza plansza)
-        {
-           
-        }
         //pola   
         RuchAI ruch0 = new RuchAI(0, 0, 0, 0, 0);
         long licznikruchow= 0;
