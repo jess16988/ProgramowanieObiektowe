@@ -9,11 +9,13 @@ namespace SzachyWPF
     class ZapisywaczRuchow
     {
         private Stack<Ruch> stosRuchow = new Stack<Ruch>();
+        private List<Ruch> ListaRuchow = new List<Ruch>();
 
         //metody
         public void DodajPozycje(int x1, int y1, Pole pole1, int x2, int y2, Pole pole2)
         {
             this.stosRuchow.Push(new Ruch(x1, y1, pole1, x2, y2, pole2));
+            this.ListaRuchow.Add(new Ruch(x1, y1, pole1, x2, y2, pole2));
         }
         public Ruch WyciagnijPozycje()
         {   
@@ -27,6 +29,10 @@ namespace SzachyWPF
             {
                 return stosRuchow.Pop();
             }
+        }
+        public Ruch ZwrocjPozycje(int pozycja)
+        {
+            return this.ListaRuchow[pozycja];
         }
         
     }

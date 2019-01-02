@@ -18,26 +18,26 @@ namespace SzachyWPF
                     this.plansza[i, j] = poleBezPionka;
                 }
             }
-            plansza[4, 0] = new Hetman(Gracz.BIALE);
-            plansza[3, 0] = new Krol(Gracz.BIALE, 4, 0);
-            plansza[5, 0] = new Goniec(Gracz.BIALE);
-            plansza[2, 0] = new Goniec(Gracz.BIALE);
-            plansza[6, 0] = new Skoczek(Gracz.BIALE);
-            plansza[1, 0] = new Skoczek(Gracz.BIALE);
-            plansza[0, 0] = new Wieza(Gracz.BIALE);
-            plansza[7, 0] = new Wieza(Gracz.BIALE);
-            plansza[4, 7] = new Hetman(Gracz.CZARNE);
-            plansza[3, 7] = new Krol(Gracz.CZARNE, 3, 7);
-            plansza[5, 7] = new Goniec(Gracz.CZARNE);
-            plansza[2, 7] = new Goniec(Gracz.CZARNE);
-            plansza[6, 7] = new Skoczek(Gracz.CZARNE);
-            plansza[1, 7] = new Skoczek(Gracz.CZARNE);
-            plansza[0, 7] = new Wieza(Gracz.CZARNE);
-            plansza[7, 7] = new Wieza(Gracz.CZARNE);
+            plansza[3, 0] = new Hetman(Gracz.CZARNE);
+            plansza[4, 0] = new Krol(Gracz.CZARNE, 4, 0);
+            plansza[5, 0] = new Goniec(Gracz.CZARNE);
+            plansza[2, 0] = new Goniec(Gracz.CZARNE);
+            plansza[6, 0] = new Skoczek(Gracz.CZARNE);
+            plansza[1, 0] = new Skoczek(Gracz.CZARNE);
+            plansza[0, 0] = new Wieza(Gracz.CZARNE);
+            plansza[7, 0] = new Wieza(Gracz.CZARNE);
+            plansza[3, 7] = new Hetman(Gracz.BIALE);
+            plansza[4, 7] = new Krol(Gracz.BIALE, 3, 7);
+            plansza[5, 7] = new Goniec(Gracz.BIALE);
+            plansza[2, 7] = new Goniec(Gracz.BIALE);
+            plansza[6, 7] = new Skoczek(Gracz.BIALE);
+            plansza[1, 7] = new Skoczek(Gracz.BIALE);
+            plansza[0, 7] = new Wieza(Gracz.BIALE);
+            plansza[7, 7] = new Wieza(Gracz.BIALE);
             for (int i = 0; i < 8; i++)
             {
-                plansza[i, 6] = new Pionek(Gracz.CZARNE);
-                plansza[i, 1] = new Pionek(Gracz.BIALE);
+                plansza[i, 6] = new Pionek(Gracz.BIALE);
+                plansza[i, 1] = new Pionek(Gracz.CZARNE);
             }
             kontrolki = new Kontrolki(this);
             ai = new AI();
@@ -120,8 +120,8 @@ namespace SzachyWPF
         }
         private bool sprawdzBicie(int x1, int y1, int x2, int y2)
         {
-            if ((plansza[x1, y1].ZwrocGracza() == Gracz.CZARNE && plansza[x2, y2].ZwrocGracza() == Gracz.BIALE) ||
-                (plansza[x1, y1].ZwrocGracza() == Gracz.BIALE && plansza[x2, y2].ZwrocGracza() == Gracz.CZARNE)) return true;
+            if ((plansza[x1, y1].ZwrocGracza() == Gracz.BIALE && plansza[x2, y2].ZwrocGracza() == Gracz.CZARNE) ||
+                (plansza[x1, y1].ZwrocGracza() == Gracz.CZARNE && plansza[x2, y2].ZwrocGracza() == Gracz.BIALE)) return true;
             else return false;
         }
         private bool sprawdzKolizje(int x1, int y1, int x2, int y2)
@@ -155,8 +155,8 @@ namespace SzachyWPF
                 plansza[ruch.x1, ruch.y1] = ruch.polePierwsze as Pole;
                 plansza[ruch.x2, ruch.y2] = ruch.poleDrugie as Pole;
                 licznikRuchow--;
-                if (ruch.polePierwsze is Pionek && (ruch.y1 == 1 && (ruch.polePierwsze as Pionek).ZwrocGracza()== Gracz.BIALE
-                    || ruch.y1 == 6 && (ruch.polePierwsze as Pionek).ZwrocGracza() == Gracz.CZARNE))
+                if (ruch.polePierwsze is Pionek && (ruch.y1 == 1 && (ruch.polePierwsze as Pionek).ZwrocGracza()== Gracz.CZARNE
+                    || ruch.y1 == 6 && (ruch.polePierwsze as Pionek).ZwrocGracza() == Gracz.BIALE))
                 {
                     (ruch.polePierwsze as Pionek).cofnijPierwszyRuch();
                 }
@@ -198,13 +198,13 @@ namespace SzachyWPF
         
         private void zbitaFiguraDoPijemnika(Pole figura)
         {
-            if (figura.ZwrocGracza() == Gracz.CZARNE) pojemnikNaFigury1.Push(figura);
-            else if (figura.ZwrocGracza() == Gracz.BIALE) pojemnikNaFigury2.Push(figura);
+            if (figura.ZwrocGracza() == Gracz.BIALE) pojemnikNaFigury1.Push(figura);
+            else if (figura.ZwrocGracza() == Gracz.CZARNE) pojemnikNaFigury2.Push(figura);
         }
         private void figuraZPojemnika(Pole figura)
         {
-            if (figura.ZwrocGracza() == Gracz.CZARNE) pojemnikNaFigury1.Pop();
-            else if (figura.ZwrocGracza() == Gracz.BIALE) pojemnikNaFigury2.Pop();
+            if (figura.ZwrocGracza() == Gracz.BIALE) pojemnikNaFigury1.Pop();
+            else if (figura.ZwrocGracza() == Gracz.CZARNE) pojemnikNaFigury2.Pop();
         }
         private bool czyPojemnikSieWypelnil()
         {
@@ -248,7 +248,7 @@ namespace SzachyWPF
         private int OcenWartoscPola(Pole pole, int kontrolna)
         {
             
-            if (pole.ZwrocGracza() == Gracz.BIALE) kontrolna = -kontrolna;
+            if (pole.ZwrocGracza() == Gracz.CZARNE) kontrolna = -kontrolna;
             
             
             if (pole is Pionek) return (kontrolna * 10);

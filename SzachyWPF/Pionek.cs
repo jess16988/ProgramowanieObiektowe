@@ -17,7 +17,7 @@ namespace SzachyWPF
         public override bool SprawdzRuchNaPustejPlanszy(int x1, int y1, int x2, int y2)
         {
             int mnoznik = 1;
-            if (gracz == Gracz.BIALE) mnoznik = -1;
+            if (gracz == Gracz.CZARNE) mnoznik = -1;
             if((y2 -y1) == (-2 * mnoznik) && x1 - x2== 0 && czyWykonalPierwszyRuch == false)
                 {
                     return true;
@@ -32,14 +32,14 @@ namespace SzachyWPF
         {
             int x = x2 - x1;
             int y = y2 - y1;
-            if (this.gracz == Gracz.CZARNE)
+            if (this.gracz == Gracz.BIALE)
             {
                 if (y2 - y1 == -1 && (x2 - x1 == 1 || x2 - x1 == -1))
                 {
                     return true;
                 }
             }
-            else if(this.gracz == Gracz.BIALE)
+            else if(this.gracz == Gracz.CZARNE)
             {
                 if (y2 - y1 == 1 && (x2 - x1 == 1 || x2 - x1 == -1))
                 {
