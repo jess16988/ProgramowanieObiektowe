@@ -24,15 +24,15 @@ namespace SzachyWPF
     {
 
         //pola
-        private Image[] obrazkiZbitych1 = new Image[12];
-        private Image[] obrazkiZbitych2 = new Image[12];
+        private Image[] obrazkiZbitych1 = new Image[16];
+        private Image[] obrazkiZbitych2 = new Image[16];
         private Button[,] pola = new Button[8,8];
         private Image[,] obrazkiDlaPol = new Image[8, 8];
         private int x1 = -10;
         private int y1;
         private int x2;
         private int y2;
-        BitmapImage[] obrazki = new BitmapImage[12];
+        BitmapImage[] obrazki = new BitmapImage[16];
         Plansza plansza = new Plansza();
         
 
@@ -236,7 +236,7 @@ namespace SzachyWPF
                 obrazkiZbitych[i].Height = wysokosc;
                 obrazkiZbitych[i].Width = szerokosc;   
                 obrazkiZbitych[i].Source = zwrocPasjacyObrazek(figura);         
-                if(i<12) stackPanel1.Children.Add(obrazkiZbitych[i]);
+                if(i<16) stackPanel1.Children.Add(obrazkiZbitych[i]);
                 else stackPanel2.Children.Add(obrazkiZbitych[i]);
                 i++;
             }
