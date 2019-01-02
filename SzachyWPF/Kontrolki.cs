@@ -56,6 +56,7 @@ namespace SzachyWPF
             czySzach = sprawdzCzySzach();
             //czyPat = sprawdzCzyPat();
         }
+
         private bool sprawdzCzySzach() //gracz ktory ostatnio sie poruszyl
         {
 

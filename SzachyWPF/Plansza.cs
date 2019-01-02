@@ -18,8 +18,8 @@ namespace SzachyWPF
                     this.plansza[i, j] = poleBezPionka;
                 }
             }
-            plansza[3, 0] = new Hetman(Gracz.BIALE);
-            plansza[4, 0] = new Krol(Gracz.BIALE, 4, 0);
+            plansza[4, 0] = new Hetman(Gracz.BIALE);
+            plansza[3, 0] = new Krol(Gracz.BIALE, 4, 0);
             plansza[5, 0] = new Goniec(Gracz.BIALE);
             plansza[2, 0] = new Goniec(Gracz.BIALE);
             plansza[6, 0] = new Skoczek(Gracz.BIALE);
