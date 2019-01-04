@@ -8,7 +8,7 @@ namespace SzachyWPF
 {
     class Goniec : Pole
     {
-        public Goniec(Gracz gracz) : base(gracz)
+        public Goniec(Gracz gracz) : base(gracz,30)
         {
             this.symbol = "L";
         }

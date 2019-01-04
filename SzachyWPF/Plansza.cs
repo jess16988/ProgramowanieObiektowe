@@ -239,23 +239,12 @@ namespace SzachyWPF
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    wartosc += OcenWartoscPola(plansza[i, j], aktywnyGracz);
+                    wartosc += plansza[i, j].podajWartosc(aktywnyGracz);
                 }
             }
             return wartosc;
         }
-        private int OcenWartoscPola(Pole pole, Gracz aktywnyGracz)
-        {
-            int kontrolna = pole.ZwrocGracza() == aktywnyGracz ? 1 : -1;
-            
-            if (pole is Pionek) return (kontrolna * 10);
-            else if (pole is Goniec) return (kontrolna * 30);
-            else if (pole is Skoczek) return (kontrolna * 30);
-            else if (pole is Wieza) return (kontrolna * 50);
-            else if (pole is Hetman) return (kontrolna * 90);
-            else if (pole is Krol) return (kontrolna * 900);
-            else return 0;
-        }
+   
         public List<RuchAI> ZwrocWszystkieMozliweRuchy(Gracz gracz)
         {
             List<RuchAI> ruchy = new List<RuchAI>();

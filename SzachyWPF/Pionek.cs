@@ -8,7 +8,7 @@ namespace SzachyWPF
 {
     class Pionek : Pole
     {
-        public Pionek(Gracz gracz) : base(gracz)
+        public Pionek(Gracz gracz) : base(gracz, 10)
         {
             this.symbol = "P";
         }
@@ -56,6 +56,5 @@ namespace SzachyWPF
         {
             czyWykonalPierwszyRuch = true;
         }
-
     }
 }
