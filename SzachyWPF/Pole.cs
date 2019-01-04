@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
-   public class Pole
+   public abstract class Pole
     {
-        public Pole(Gracz? gracz)
+        protected Pole(Gracz? gracz)
         {
             this.gracz = gracz;
         }
