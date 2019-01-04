@@ -13,35 +13,29 @@ namespace SzachyWPF
 
         private RuchAI zwrocNajlepszyRuchZPierwszejPlanszy(Plansza plansza)
         {
-            List<RuchAI> ruchy = plansza.ZwrocWszystkieMozliweRuchy(Gracz.CZARNE);
-            int max = -1000;           
-            RuchAI najlepszyRuch = ruch0;
-            RuchAI drugi;
-            //int aktualna;           
-            foreach (var ruch in ruchy)
+            List<RuchAI> czarneRuchy = plansza.ZwrocWszystkieMozliweRuchy(Gracz.CZARNE);
+            int min = 1000;           
+            RuchAI najlepszyCzarnyRuch = ruch0;
+                 
+            foreach (var czarnyRuch in czarneRuchy)
             {
-                plansza.wykonajRuch(ruch.x1, ruch.y1, ruch.x2, ruch.y2);
-                drugi = zwrocNajlepszyRuchZKolejnej(plansza);
+                plansza.wykonajRuch(czarnyRuch.x1, czarnyRuch.y1, czarnyRuch.x2, czarnyRuch.y2);
+                List<RuchAI> bialeRuchy = plansza.ZwrocWszystkieMozliweRuchy(Gracz.BIALE);
+                RuchAI najlepszyBialyRuch = bialeRuchy.Max();
 
-                int roznica = ruch.CompareTo(drugi); 
-                if (roznica > max)
+                if (najlepszyBialyRuch.wartosc < min)
                 {
-                    najlepszyRuch = ruch;
-                    max = roznica;
+                    najlepszyCzarnyRuch = czarnyRuch;
+                    min = najlepszyBialyRuch.wartosc;
                 }
                 plansza.CofnijRuch();
             }
             Console.Read();
-            return najlepszyRuch;
+            return najlepszyCzarnyRuch;
         }
         public RuchAI ZwrocNajlepszyRuch(Plansza plansza)
         {
            return zwrocNajlepszyRuchZPierwszejPlanszy(plansza);
-        }
-        private RuchAI zwrocNajlepszyRuchZKolejnej(Plansza plansza)
-        {
-            List<RuchAI> ruchy = plansza.ZwrocWszystkieMozliweRuchy(Gracz.BIALE);
-            return ruchy.Max();
         }
         
     }
