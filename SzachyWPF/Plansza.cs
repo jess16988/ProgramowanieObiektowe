@@ -232,24 +232,21 @@ namespace SzachyWPF
 
         public int OcenWartoscPlanszy()
         {
-            int kontrolna = -1;
-            if (licznikRuchow % 2 != 0) kontrolna = -kontrolna;
+            Gracz aktywnyGracz = licznikRuchow % 2 != 0 ? Gracz.BIALE : Gracz.CZARNE;
 
             int wartosc = 0;
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    wartosc += OcenWartoscPola(plansza[i, j],kontrolna);
+                    wartosc += OcenWartoscPola(plansza[i, j], aktywnyGracz);
                 }
             }
             return wartosc;
         }
-        private int OcenWartoscPola(Pole pole, int kontrolna)
+        private int OcenWartoscPola(Pole pole, Gracz aktywnyGracz)
         {
-            
-            if (pole.ZwrocGracza() == Gracz.CZARNE) kontrolna = -kontrolna;
-            
+            int kontrolna = pole.ZwrocGracza() == aktywnyGracz ? 1 : -1;
             
             if (pole is Pionek) return (kontrolna * 10);
             else if (pole is Goniec) return (kontrolna * 30);
