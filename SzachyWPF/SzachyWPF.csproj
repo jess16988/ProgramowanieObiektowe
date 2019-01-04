@@ -59,6 +59,7 @@
     <Compile Include="Gracz.cs" />
     <Compile Include="Kontrolki.cs" />
     <Compile Include="Prosta.cs" />
+    <Compile Include="PustePole.cs" />
     <Compile Include="Ruch.cs" />
     <Compile Include="RuchAI.cs" />
     <Compile Include="Wieza.cs" />

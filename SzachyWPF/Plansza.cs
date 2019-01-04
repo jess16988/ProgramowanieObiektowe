@@ -45,7 +45,7 @@ namespace SzachyWPF
         //pola
 
         private AI ai;
-        private Pole poleBezPionka = new Pole(null);
+        private Pole poleBezPionka = new PustePole();
         public Kontrolki kontrolki; 
         private Pole[,] plansza = new Pole[8, 8];
         private int licznikRuchow = 0;
