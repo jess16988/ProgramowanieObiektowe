@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
-    class RuchAI
+    class RuchAI : IComparable<RuchAI>
     {
         public RuchAI(int x1, int y1, int x2, int y2, int wartosc)
         {
@@ -21,5 +17,10 @@ namespace SzachyWPF
         public int x2;
         public int y2;
         public int wartosc;
+
+        public int CompareTo(RuchAI other)
+        {
+            return this.wartosc - other.wartosc;
+        }
     }
 }
