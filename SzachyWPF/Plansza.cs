@@ -49,7 +49,7 @@ namespace SzachyWPF
         public Kontrolki kontrolki; 
         private Pole[,] plansza = new Pole[8, 8];
         private int licznikRuchow = 0;
-        private ZapisywaczRuchow zapisywaczRuchow = new ZapisywaczRuchow();
+        private IZapisywaczRuchow zapisywaczRuchow = new ZapisywaczRuchow();
         private Stack<Pole> pojemnikNaFigury1 = new Stack<Pole>();
         private Stack<Pole> pojemnikNaFigury2 = new Stack<Pole>();
 

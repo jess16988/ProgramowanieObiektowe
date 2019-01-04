@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="AI.cs" />
     <Compile Include="Gracz.cs" />
+    <Compile Include="IZapisywaczRuchow.cs" />
     <Compile Include="Kontrolki.cs" />
     <Compile Include="Prosta.cs" />
     <Compile Include="PustePole.cs" />

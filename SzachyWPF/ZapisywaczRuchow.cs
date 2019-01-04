@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
-    class ZapisywaczRuchow
+    class ZapisywaczRuchow : IZapisywaczRuchow
     {
         private Stack<Ruch> stosRuchow = new Stack<Ruch>();
         private List<Ruch> ListaRuchow = new List<Ruch>();
