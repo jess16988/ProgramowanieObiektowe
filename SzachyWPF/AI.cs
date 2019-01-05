@@ -19,7 +19,7 @@ namespace SzachyWPF
                  
             foreach (var czarnyRuch in czarneRuchy)
             {
-                plansza.wykonajRuch(czarnyRuch.x1, czarnyRuch.y1, czarnyRuch.x2, czarnyRuch.y2);
+                plansza.WykonajRuch(czarnyRuch.x1, czarnyRuch.y1, czarnyRuch.x2, czarnyRuch.y2);
                 List<RuchAI> bialeRuchy = plansza.ZwrocWszystkieMozliweRuchy(Gracz.BIALE);
                 RuchAI najlepszyBialyRuch = bialeRuchy.Max();
 

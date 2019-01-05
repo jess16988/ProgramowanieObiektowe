@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
-    class Plansza
+    public class Plansza
     {
         
         public Plansza()
@@ -52,15 +52,16 @@ namespace SzachyWPF
         private IZapisywaczRuchow zapisywaczRuchow = new ZapisywaczRuchow();
         private Stack<Pole> pojemnikNaFigury1 = new Stack<Pole>();
         private Stack<Pole> pojemnikNaFigury2 = new Stack<Pole>();
+        public Promocja promocja = new Promocja();
 
         //metody
         public bool RuszGlowny(int x1, int y1, int x2, int y2, Gracz gracz)
         {
             if (SprawdzCalyRuch(x1, y1, x2, y2, gracz) == true)
             {
-                wykonajRuch(x1, y1, x2, y2);
-                RuchAI ruch = ai.ZwrocNajlepszyRuch(this);
-                wykonajRuch(ruch.x1, ruch.y1, ruch.x2, ruch.y2);
+                WykonajRuch(x1, y1, x2, y2);
+                kontrolki.Sprawdz();
+                promocja.Sprawdz(x2, y2, plansza[x2, y2]);
                 return true;
             }
             return false;
@@ -69,7 +70,7 @@ namespace SzachyWPF
         {
             if (sprawdzCalyRuchZaWyjatkiemKrola(x1, y1, x2, y2, gracz) == true)
             {
-                 wykonajRuch(x1, y1, x2, y2);                
+                 WykonajRuch(x1, y1, x2, y2);                
                  kontrolki.znajdzKroli(gracz);
                 int x1Krola1 = kontrolki.x1Krola1;
                 int y1Krola1 = kontrolki.y1Krola1;
@@ -163,7 +164,7 @@ namespace SzachyWPF
             }
         }
 
-        public void wykonajRuch(int x1, int y1, int x2, int y2)
+        public void WykonajRuch(int x1, int y1, int x2, int y2)
         {
             zapiszRuch(x1, y1, x2, y2);
             zbitaFiguraDoPijemnika(plansza[x2, y2]);
@@ -175,8 +176,7 @@ namespace SzachyWPF
             plansza[x2, y2] = plansza[x1, y1];
             plansza[x1, y1] = poleBezPionka;
             
-            licznikRuchow++;
-            kontrolki.Sprawdz();
+            licznikRuchow++;            
         }
         private bool czyRuchNieOdkrylKrola(int x1Krola1, int y1Krola1, Gracz? gracz)
         {
@@ -245,7 +245,7 @@ namespace SzachyWPF
             return wartosc;
         }
    
-        public List<RuchAI> ZwrocWszystkieMozliweRuchy(Gracz gracz)
+        public List<RuchAI> ZwrocWszystkieMozliweRuchy(Gracz? gracz)
         {
             List<RuchAI> ruchy = new List<RuchAI>();
      
@@ -259,7 +259,7 @@ namespace SzachyWPF
                         {
                             if (SprawdzCalyRuch(i, j, g, h, gracz) == true)
                             {
-                                wykonajRuch(i, j, g, h);
+                                WykonajRuch(i, j, g, h);
                                 ruchy.Add(new RuchAI(i, j, g, h, this.OcenWartoscPlanszy()));
                                 CofnijRuch();
                             }
@@ -285,7 +285,38 @@ namespace SzachyWPF
                 ruchy[n] = wartosc;
             }
         }
+        public void WykonajRuchDlaAI()
+        {
+            RuchAI ruch = ai.ZwrocNajlepszyRuch(this);
+            WykonajRuch(ruch.x1, ruch.y1, ruch.x2, ruch.y2);
+            kontrolki.znajdzKroli(Gracz.CZARNE);
+            kontrolki.Sprawdz();
+            promocja.Sprawdz(ruch.x2, ruch.y2, plansza[ruch.x2, ruch.y2]);
+        }
+        public void Wypromuj(PromocjaWindow.Figura DoWypromowania)
+        {
+            int x = promocja.x;
+            int y = promocja.y;
+            Gracz gracz;
+            if (licznikRuchow % 2 == 0) gracz = Gracz.CZARNE;
+            else gracz = Gracz.BIALE;
 
-
+            if (DoWypromowania == PromocjaWindow.Figura.Goniec)
+            {
+                plansza[x, y] = new Goniec(gracz);
+            }
+            else if (DoWypromowania == PromocjaWindow.Figura.Hetman)
+            {
+                plansza[x, y] = new Hetman(gracz);
+            }
+            else if (DoWypromowania == PromocjaWindow.Figura.Wieza)
+            {
+                plansza[x, y] = new Wieza(gracz);
+            }
+            else if (DoWypromowania == PromocjaWindow.Figura.Skoczek)
+            {
+                plansza[x, y] = new Skoczek(gracz);
+            }
+        }
     }
 }

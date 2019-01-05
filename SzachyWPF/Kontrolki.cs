@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
-    class Kontrolki
+    public class Kontrolki
     {
         public Kontrolki(Plansza plansza)
         {
@@ -14,15 +14,14 @@ namespace SzachyWPF
             this.pola = plansza.Zwroc();
         }
         //pola
-        public int x1Krola1 = 0;
-        public int y1Krola1 = 0;
-        public int x2Krola2 = -1;
-        public int y2Krola2 = -1;
+        public int x1Krola1 = 4;
+        public int y1Krola1 = 7;
+        public int x2Krola2 = 4;
+        public int y2Krola2 = 0;
         private Gracz? gracz = null;
         public bool czySzach = false;
         public bool czyMat = false;
         public bool czyPat = false;
-        public bool czyKoniec = false;
         private Plansza plansza;
         private Pole[,] pola;
 
@@ -53,8 +52,12 @@ namespace SzachyWPF
         }
         public void Sprawdz()
         {
+            czySzach = false;
+            czyMat = false;
+            czyPat = false;
+
             czySzach = sprawdzCzySzach();
-            //czyPat = sprawdzCzyPat();
+            czyPat = sprawdzCzyPat();
         }
 
         private bool sprawdzCzySzach() //gracz ktory ostatnio sie poruszyl
@@ -68,8 +71,7 @@ namespace SzachyWPF
                     szach = plansza.SprawdzCalyRuch(i, j, x2Krola2, y2Krola2, pola[x1Krola1, y1Krola1].ZwrocGracza());
                     if (szach == true)
                     {
-                        if (sprawdzCzyMat(i, j, x2Krola2, y2Krola2) == true) czyMat = true;
-                        else czyMat = false;                       
+                        czyMat = sprawdzCzyMat(i, j, x2Krola2, y2Krola2);                    
                         return true;
                     }                  
                 }                
@@ -78,50 +80,31 @@ namespace SzachyWPF
         }
         private bool sprawdzCzyMat(int xAtakujacego, int yAtakujacego, int xKrola, int yKrola)
         {
-            //sprawdzam czy nie da sie zbic atakujacego
+            if (plansza.ZwrocWszystkieMozliweRuchy(pola[xKrola, yKrola].ZwrocGracza()).Count == 0) return true;
+            else return false;
+        }
+        private bool sprawdzCzyPat()//gracz ktory ostatnio sie poruszyl
+        {
+            Gracz gracz2;
+            if (gracz == Gracz.BIALE) gracz2 = Gracz.CZARNE;
+            else gracz2 = Gracz.BIALE;
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    if (plansza.SprawdzCalyRuch(i, j, xAtakujacego, yAtakujacego, pola[i, j].ZwrocGracza()) == true)
+                    for (int k = 0; k < 8; k++)
                     {
-                        return false;
-                    }
-                }
-            }
-            //sprawdzam czy nie da sie uciec krolem
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    if (plansza.SprawdzCalyRuch(xKrola, yKrola, xKrola + i - 1, yKrola + j - 1, pola[xKrola, yKrola].ZwrocGracza()) == true)
-                    {
-                        return false;
-                    }
-                }
-                
-            }
-            //sprawdzam czy nie da sie zagrodzic atakujacego
-            if (pola[yAtakujacego, yAtakujacego] is Goniec || pola[yAtakujacego, yAtakujacego] is Wieza || pola[yAtakujacego, yAtakujacego] is Hetman)
-            {
-                int[,] tablica = Prosta.ZwrocPunktyKolizji(xAtakujacego, yAtakujacego, xKrola, yKrola);
-                int x = 0;
-                while (tablica[0, x] != 100)
-                {
-                    for (int i = 0; i < 8; i++)
-                    {
-                        for (int j = 0; j < 8; j++)
+                        for (int l = 0; l < 8; l++)
                         {
-                            if (plansza.SprawdzCalyRuch(i, j, tablica[0, x], tablica[1, x], pola[i, j].ZwrocGracza()) == true)
+                            if (plansza.SprawdzCalyRuch(i, j, k, l, gracz2) == true)
                             {
                                 return false;
                             }
                         }
                     }
-                    x++;
                 }
             }
             return true;
-        }        
+        }
     }
 }

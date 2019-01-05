@@ -2,7 +2,7 @@
 
 namespace SzachyWPF
 {
-    class RuchAI : IComparable<RuchAI>
+    public class RuchAI : IComparable<RuchAI>
     {
         public RuchAI(int x1, int y1, int x2, int y2, int wartosc)
         {

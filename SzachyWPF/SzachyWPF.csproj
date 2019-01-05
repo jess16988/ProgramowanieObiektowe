@@ -59,6 +59,10 @@
     <Compile Include="Gracz.cs" />
     <Compile Include="IZapisywaczRuchow.cs" />
     <Compile Include="Kontrolki.cs" />
+    <Compile Include="Promocja.cs" />
+    <Compile Include="PromocjaWindow.xaml.cs">
+      <DependentUpon>PromocjaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Prosta.cs" />
     <Compile Include="PustePole.cs" />
     <Compile Include="Ruch.cs" />
@@ -87,6 +91,10 @@
     <Page Include="MenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PromocjaWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

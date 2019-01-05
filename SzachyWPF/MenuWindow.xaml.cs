@@ -27,7 +27,7 @@ namespace SzachyWPF
 
         private void nowaGraAIButton_Click_1(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(true);
             mainWindow.Closing += ShowMenu;
             mainWindow.Show();
             this.Close();
@@ -41,7 +41,10 @@ namespace SzachyWPF
 
         private void nowaGraCzlowiekButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Nie zaimplementowano");
+            MainWindow mainWindow = new MainWindow(false);
+            mainWindow.Closing += ShowMenu;
+            mainWindow.Show();
+            this.Close();
         }
 
         private void wczytajGreButton_Click(object sender, RoutedEventArgs e)
