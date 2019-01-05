@@ -8,6 +8,7 @@ namespace SzachyWPF
 {
     class Hetman : Pole
     {
+        // TEST
         public Hetman(Gracz gracz) : base(gracz,90)
         {
             this.symbol = "Q";
