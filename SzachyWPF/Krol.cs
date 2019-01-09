@@ -8,7 +8,6 @@ namespace SzachyWPF
 {
     class Krol : Pole
     {
-        //sprawdzam czy umiem w gita
         public Krol(Gracz gracz, int x, int y) : base(gracz,900)
         {
             this.symbol = "K";
