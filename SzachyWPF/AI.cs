@@ -22,8 +22,17 @@ namespace SzachyWPF
                 plansza.WykonajRuch(czarnyRuch.x1, czarnyRuch.y1, czarnyRuch.x2, czarnyRuch.y2);
                 List<RuchAI> bialeRuchy = plansza.ZwrocWszystkieMozliweRuchy(Gracz.BIALE);
                 RuchAI najlepszyBialyRuch = bialeRuchy.Max();
-
-                if (najlepszyBialyRuch.wartosc < min)
+                if (najlepszyBialyRuch is null)
+                {
+                    plansza.kontrolki.znajdzKroli(Gracz.CZARNE);
+                    plansza.kontrolki.Sprawdz();
+                    if(plansza.kontrolki.czyMat||plansza.kontrolki.czyPat) // nie wiem czy jest sens zostawiac pat
+                    { 
+                        plansza.CofnijRuch();
+                        return czarnyRuch;
+                    } 
+                }                
+                else if (najlepszyBialyRuch.wartosc < min)
                 {
                     najlepszyCzarnyRuch = czarnyRuch;
                     min = najlepszyBialyRuch.wartosc;

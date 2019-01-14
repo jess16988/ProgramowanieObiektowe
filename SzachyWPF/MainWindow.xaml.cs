@@ -269,7 +269,7 @@ namespace SzachyWPF
                 obrazkiZbitych[i].Height = wysokosc;
                 obrazkiZbitych[i].Width = szerokosc;   
                 obrazkiZbitych[i].Source = zwrocPasjacyObrazek(figura);         
-                if(i<16) stackPanel1.Children.Add(obrazkiZbitych[i]);
+                if(i<8) stackPanel1.Children.Add(obrazkiZbitych[i]);
                 else stackPanel2.Children.Add(obrazkiZbitych[i]);
                 i++;
             }
