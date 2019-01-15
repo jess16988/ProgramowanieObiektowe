@@ -8,6 +8,10 @@ namespace SzachyWPF
 {
     class Goniec : Pole
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gracz"></param>
         public Goniec(Gracz gracz) : base(gracz,30)
         {
             this.symbol = "L";

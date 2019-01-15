@@ -8,6 +8,10 @@ namespace SzachyWPF
 {
     class Wieza : Pole
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gracz"></param>
         public Wieza(Gracz gracz) : base(gracz,50)
         {
             this.symbol = "W";

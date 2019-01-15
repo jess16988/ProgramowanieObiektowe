@@ -8,6 +8,12 @@ namespace SzachyWPF
 {
     class Krol : Pole
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gracz"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public Krol(Gracz gracz, int x, int y) : base(gracz,900)
         {
             this.symbol = "K";

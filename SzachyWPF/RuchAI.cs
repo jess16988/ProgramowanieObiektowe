@@ -4,6 +4,14 @@ namespace SzachyWPF
 {
     public class RuchAI : IComparable<RuchAI>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x1"></param>
+        /// <param name="y1"></param>
+        /// <param name="x2"></param>
+        /// <param name="y2"></param>
+        /// <param name="wartosc"></param>
         public RuchAI(int x1, int y1, int x2, int y2, int wartosc)
         {
             this.x1 = x1;

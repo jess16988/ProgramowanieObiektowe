@@ -8,6 +8,10 @@ namespace SzachyWPF
 {
     class Hetman : Pole
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gracz"></param>
         // TEST
         public Hetman(Gracz gracz) : base(gracz,90)
         {

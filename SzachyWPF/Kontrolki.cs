@@ -8,6 +8,10 @@ namespace SzachyWPF
 {
     public class Kontrolki
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="plansza"></param>
         public Kontrolki(Plansza plansza)
         {
             this.plansza = plansza;

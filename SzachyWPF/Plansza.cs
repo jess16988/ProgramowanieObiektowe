@@ -8,6 +8,9 @@ namespace SzachyWPF
 {
     public class Plansza
     {
+        /// <summary>
+        /// 
+        /// </summary>
         
         public Plansza()
         {

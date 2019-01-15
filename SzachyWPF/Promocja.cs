@@ -8,6 +8,10 @@ namespace SzachyWPF
 {
     public class Promocja
     {
+        /// <summary>
+        /// 
+        /// </summary>
+
         //pola
         public bool czyPromocja = false;
         public int x;

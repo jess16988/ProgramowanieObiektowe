@@ -8,6 +8,9 @@ namespace SzachyWPF
 {
     class AI
     {
+        /// <summary>
+        /// 
+        /// </summary>
         //pola   
         RuchAI ruch0 = new RuchAI(0, 0, 0, 0, 0);
 

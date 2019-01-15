@@ -8,6 +8,11 @@ namespace SzachyWPF
 {
    public abstract class Pole
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gracz"></param>
+        /// <param name="wartosc"></param>
         protected Pole(Gracz? gracz, int wartosc)
         {
             this.gracz = gracz;

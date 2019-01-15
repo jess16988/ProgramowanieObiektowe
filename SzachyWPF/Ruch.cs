@@ -8,6 +8,9 @@ namespace SzachyWPF
 {
     public class Ruch
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public Pole polePierwsze { get; } = new PustePole();
         public int x1 { get; }
         public int y1 { get; }
