@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SzachyWPF", "SzachyWPF\SzachyWPF.csproj", "{FDF97155-1973-4F00-AAB4-63C1658DB6A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SzachyWPFTests", "SzachyWPFTests\SzachyWPFTests.csproj", "{F1CC32C6-9B07-42C0-B510-D885D7A7F7FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FDF97155-1973-4F00-AAB4-63C1658DB6A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDF97155-1973-4F00-AAB4-63C1658DB6A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDF97155-1973-4F00-AAB4-63C1658DB6A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1CC32C6-9B07-42C0-B510-D885D7A7F7FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1CC32C6-9B07-42C0-B510-D885D7A7F7FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1CC32C6-9B07-42C0-B510-D885D7A7F7FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1CC32C6-9B07-42C0-B510-D885D7A7F7FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
