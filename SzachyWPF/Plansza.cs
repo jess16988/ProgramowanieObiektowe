@@ -43,11 +43,8 @@ namespace SzachyWPF
                 plansza[i, 1] = new Pionek(Gracz.CZARNE);
             }
             kontrolki = new Kontrolki(this);
-            ai = new AI();
         }
-        //pola
-
-        private AI ai;
+        //pola        
         private Pole poleBezPionka = new PustePole();
         public Kontrolki kontrolki; 
         private Pole[,] plansza = new Pole[8, 8];
@@ -287,14 +284,6 @@ namespace SzachyWPF
                 ruchy[k] = ruchy[n];
                 ruchy[n] = wartosc;
             }
-        }
-        public void WykonajRuchDlaAI()
-        {
-            RuchAI ruch = ai.ZwrocNajlepszyRuch(this);
-            WykonajRuch(ruch.x1, ruch.y1, ruch.x2, ruch.y2);
-            kontrolki.znajdzKroli(Gracz.CZARNE);
-            kontrolki.Sprawdz();
-            promocja.Sprawdz(ruch.x2, ruch.y2, plansza[ruch.x2, ruch.y2]);
         }
         public void Wypromuj(PromocjaWindow.Figura DoWypromowania)
         {

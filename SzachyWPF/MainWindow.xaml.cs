@@ -37,11 +37,13 @@ namespace SzachyWPF
         bool czyGraKomputer = false;
         private int xSzachowanegoKrola;
         private int ySzachowanegoKrola;
+        AI ai;
 
 
         public MainWindow(bool czyGraKomputer)
         {
             this.czyGraKomputer = czyGraKomputer;
+            ai = new AI();
             InitializeComponent();
             utworzPola();
             wczytajObrazkizPlikow();
@@ -116,7 +118,7 @@ namespace SzachyWPF
                         //AI
                         rysujPlansze(); //jesli chcemy zeby wypisywalo rowniez szach wykonany przez nas
                         rysujPojemniki();
-                        plansza.WykonajRuchDlaAI();
+                        WykonajRuchDlaAI();
                         //AI
                     }
                     rysujPlansze();
@@ -269,7 +271,7 @@ namespace SzachyWPF
                 obrazkiZbitych[i].Height = wysokosc;
                 obrazkiZbitych[i].Width = szerokosc;   
                 obrazkiZbitych[i].Source = zwrocPasjacyObrazek(figura);         
-                if(i<16) stackPanel1.Children.Add(obrazkiZbitych[i]);
+                if(i<8) stackPanel1.Children.Add(obrazkiZbitych[i]);
                 else stackPanel2.Children.Add(obrazkiZbitych[i]);
                 i++;
             }
@@ -317,6 +319,12 @@ namespace SzachyWPF
                 }
 
             }
+        }
+
+        public void WykonajRuchDlaAI()
+        {
+            RuchAI ruch = ai.ZwrocNajlepszyRuch(plansza);
+            plansza.RuszGlowny(ruch.x1, ruch.y1, ruch.x2, ruch.y2,Gracz.CZARNE);
         }
     }
 }
