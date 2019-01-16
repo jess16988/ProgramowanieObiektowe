@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace SzachyWPF
 {
@@ -219,22 +220,6 @@ namespace SzachyWPF
             }
             return null;
         }
-        private void przetestujObrazki()
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                obrazkiDlaPol[0, i] = new Image();
-                obrazkiDlaPol[0, i].Source = obrazki[i];
-                pola[0, i].Content = obrazkiDlaPol[0, i];
-               
-            }
-            for (int i = 0; i < 8; i++)
-            {
-                obrazkiDlaPol[1, i] = new Image();
-                obrazkiDlaPol[1, i].Source = obrazki[i];
-                pola[1, i].Content = obrazkiDlaPol[1,i];
-            }
-        }
         private void zaznaczPola(int x1, int y1, Gracz gracz)
         {
             Pole[,] pionki = plansza.Zwroc();
@@ -325,6 +310,18 @@ namespace SzachyWPF
         {
             RuchAI ruch = ai.ZwrocNajlepszyRuch(plansza);
             plansza.RuszGlowny(ruch.x1, ruch.y1, ruch.x2, ruch.y2,Gracz.CZARNE);
+        }
+
+        private void zapiszGre(object sender, RoutedEventArgs e)
+        {
+            ZapiszWindow oknoZapisu = new ZapiszWindow();
+            oknoZapisu.ShowDialog();
+            if (oknoZapisu.CzyZapisac()) zapiszXML();
+        }
+
+        private void zapiszXML()
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(MainWindow));           
         }
     }
 }

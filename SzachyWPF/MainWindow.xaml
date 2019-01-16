@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SzachyWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000">
+        Title="MainWindow" Height="600" Width="1100">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0" Name="przyciskZapisz" VerticalAlignment="Top" Content="Zapisz grę" Margin="10" Height="45" Click="zapiszGre"/>
+
+        <Grid Grid.Column="1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width ="*"/>
             <ColumnDefinition Width="3*"/>
@@ -54,5 +63,6 @@
             <StackPanel Name="pojemnik3" Grid.Column="0" VerticalAlignment="Bottom"/>
             <StackPanel Name="pojemnik4" Grid.Column="1" VerticalAlignment="Bottom"/>
         </Grid>
+    </Grid>
     </Grid>
 </Window>
