@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
-    class Skoczek : Pole
+    public class Skoczek : Pole
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="gracz"></param>
+        public Skoczek()
+        {
+
+        }
         public Skoczek(Gracz gracz) : base(gracz,30)
         {
             this.symbol = "G";

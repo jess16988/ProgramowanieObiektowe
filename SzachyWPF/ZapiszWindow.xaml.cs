@@ -22,6 +22,7 @@ namespace SzachyWPF
 
         //pola
         private bool czyZapisac;
+        public string sciezka = "";
 
         public ZapiszWindow()
         {
@@ -30,6 +31,7 @@ namespace SzachyWPF
 
         private void zapiszGre(object sender, RoutedEventArgs e)
         {
+            sciezka = textBox.Text;
             this.czyZapisac = true;
             this.Close();
         }

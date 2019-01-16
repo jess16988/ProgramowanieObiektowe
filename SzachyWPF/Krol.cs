@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
-    class Krol : Pole
+    public class Krol : Pole
     {
         /// <summary>
         /// 
@@ -19,6 +19,10 @@ namespace SzachyWPF
             this.symbol = "K";
             this.x = x;
             this.y = y;
+        }
+        public Krol()
+        {
+
         }
         //pola
         int x;

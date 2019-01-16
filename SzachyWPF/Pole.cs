@@ -13,15 +13,19 @@ namespace SzachyWPF
         /// </summary>
         /// <param name="gracz"></param>
         /// <param name="wartosc"></param>
+        public Pole()
+        {
+
+        }
         protected Pole(Gracz? gracz, int wartosc)
         {
             this.gracz = gracz;
             this.wartosc = wartosc;
         }
         //pola
-        protected string symbol = " ";
-        protected Gracz? gracz;
-        private int wartosc;
+        public string symbol = " ";
+        public Gracz? gracz;
+        public int wartosc;
 
         //metody
         public virtual bool SprawdzRuchNaPustejPlanszy(int x1, int y1, int x2, int y2)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
-    class Goniec : Pole
+    public class Goniec : Pole
     {
         /// <summary>
         /// 
@@ -15,6 +15,10 @@ namespace SzachyWPF
         public Goniec(Gracz gracz) : base(gracz,30)
         {
             this.symbol = "L";
+        }
+        public Goniec()
+        {
+
         }
 
         public override bool SprawdzRuchNaPustejPlanszy(int x1, int y1, int x2, int y2)

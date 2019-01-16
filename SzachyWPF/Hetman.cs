@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
-    class Hetman : Pole
+    public class Hetman : Pole
     {
         /// <summary>
         /// 
@@ -17,7 +17,10 @@ namespace SzachyWPF
         {
             this.symbol = "Q";
         }
-
+        public Hetman()
+        {
+            
+        }
         public override bool SprawdzRuchNaPustejPlanszy(int x1, int y1, int x2, int y2)
         {
             int x = x1 - x2;
