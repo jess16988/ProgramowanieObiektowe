@@ -13,7 +13,10 @@ namespace SzachyWPF
         /// <summary>
         /// 
         /// </summary>
-        
+        public Plansza(bool czyGraKomputer): this()
+        {
+            this.czyGraKomputer = czyGraKomputer;
+        }
         public Plansza()
         {
             for (int i = 0; i < 8; i++)

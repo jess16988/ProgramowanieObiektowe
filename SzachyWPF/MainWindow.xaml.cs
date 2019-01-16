@@ -52,7 +52,7 @@ namespace SzachyWPF
         }
         public MainWindow(bool czyGraKomputer)
         {
-            plansza = new Plansza();
+            plansza = new Plansza(czyGraKomputer);
             this.czyGraKomputer = czyGraKomputer;
             if (czyGraKomputer) ai = new AI();
             InitializeComponent();
