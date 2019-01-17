@@ -57,7 +57,12 @@
   </Choose>
   <ItemGroup>
     <Compile Include="GoniecTests.cs" />
+    <Compile Include="HetmanTests.cs" />
+    <Compile Include="KrolTests.cs" />
+    <Compile Include="PionekTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SkoczekTests.cs" />
+    <Compile Include="WiezaTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
