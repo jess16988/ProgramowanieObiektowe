@@ -56,13 +56,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="KontrolkiTests.cs" />
-    <Compile Include="PlanszaTests.cs" />
-    <Compile Include="PoleTests.cs" />
-    <Compile Include="PromocjaTests.cs" />
+    <Compile Include="GoniecTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RuchAITests.cs" />
-    <Compile Include="RuchTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
-    class Goniec : Pole
+    public class Goniec : Pole
     {
         /// <summary>
         /// 
