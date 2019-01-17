@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace SzachyWPF
 {
@@ -26,24 +27,34 @@ namespace SzachyWPF
         //pola
         private Image[] obrazkiZbitych1 = new Image[16];
         private Image[] obrazkiZbitych2 = new Image[16];
-        private Button[,] pola = new Button[8,8];
+        private Button[,] pola = new Button[8, 8];
         private Image[,] obrazkiDlaPol = new Image[8, 8];
         private int x1 = -10;
         private int y1;
         private int x2;
         private int y2;
         BitmapImage[] obrazki = new BitmapImage[16];
-        Plansza plansza = new Plansza();
-        bool czyGraKomputer = false;
+        private Plansza plansza;
+        private bool czyGraKomputer = false;     
         private int xSzachowanegoKrola;
         private int ySzachowanegoKrola;
         AI ai;
 
-
+        public MainWindow(Plansza plansza, bool czyGraKomputer)
+        {
+            this.plansza = plansza;
+            this.czyGraKomputer = czyGraKomputer;
+            if(czyGraKomputer) ai = new AI();
+            InitializeComponent();
+            utworzPola();
+            wczytajObrazkizPlikow();
+            rysujPlansze();
+        }
         public MainWindow(bool czyGraKomputer)
         {
+            plansza = new Plansza(czyGraKomputer);
             this.czyGraKomputer = czyGraKomputer;
-            ai = new AI();
+            if (czyGraKomputer) ai = new AI();
             InitializeComponent();
             utworzPola();
             wczytajObrazkizPlikow();
@@ -219,22 +230,6 @@ namespace SzachyWPF
             }
             return null;
         }
-        private void przetestujObrazki()
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                obrazkiDlaPol[0, i] = new Image();
-                obrazkiDlaPol[0, i].Source = obrazki[i];
-                pola[0, i].Content = obrazkiDlaPol[0, i];
-               
-            }
-            for (int i = 0; i < 8; i++)
-            {
-                obrazkiDlaPol[1, i] = new Image();
-                obrazkiDlaPol[1, i].Source = obrazki[i];
-                pola[1, i].Content = obrazkiDlaPol[1,i];
-            }
-        }
         private void zaznaczPola(int x1, int y1, Gracz gracz)
         {
             Pole[,] pionki = plansza.Zwroc();
@@ -326,5 +321,14 @@ namespace SzachyWPF
             RuchAI ruch = ai.ZwrocNajlepszyRuch(plansza);
             plansza.RuszGlowny(ruch.x1, ruch.y1, ruch.x2, ruch.y2,Gracz.CZARNE);
         }
+
+        private void zapiszGre(object sender, RoutedEventArgs e)
+        {
+            ZapiszWindow oknoZapisu = new ZapiszWindow();
+            oknoZapisu.ShowDialog();
+            if (oknoZapisu.CzyZapisac()) plansza.zapiszXML(oknoZapisu.sciezka);
+        }
+
+
     }
 }

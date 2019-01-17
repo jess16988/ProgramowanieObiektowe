@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
-    class Wieza : Pole
+    public class Wieza : Pole
     {
         /// <summary>
         /// 
@@ -16,7 +16,10 @@ namespace SzachyWPF
         {
             this.symbol = "W";
         }
+        public Wieza()
+        {
 
+        }
         public override bool SprawdzRuchNaPustejPlanszy(int x1, int y1, int x2, int y2)
         {
             if ((x1 - x2) == 0 || (y1 - y2) == 0)

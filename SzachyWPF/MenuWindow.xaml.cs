@@ -49,7 +49,17 @@ namespace SzachyWPF
 
         private void wczytajGreButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Nie zaimplementowano");
+            WczytajWindow oknoWczytywania = new WczytajWindow();
+            oknoWczytywania.ShowDialog();
+            Plansza plansza;
+            if (oknoWczytywania.nazwa != null)
+            {
+                plansza = Plansza.OdczytajXML(oknoWczytywania.nazwa);
+                MainWindow mainWindow = new MainWindow(plansza, plansza.czyGraKomputer);
+                mainWindow.Closing += ShowMenu;
+                mainWindow.Show();
+                this.Close();
+            }
         }
 
         private void zapiszGreButton_Click(object sender, RoutedEventArgs e)

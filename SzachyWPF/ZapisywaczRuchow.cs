@@ -6,13 +6,25 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
-    class ZapisywaczRuchow : IZapisywaczRuchow
+    public class ZapisywaczRuchow : IZapisywaczRuchow
     {
         /// <summary>
         /// 
         /// </summary>
         private Stack<Ruch> stosRuchow = new Stack<Ruch>();
-        private List<Ruch> ListaRuchow = new List<Ruch>();
+        public List<Ruch> ListaRuchow = new List<Ruch>();
+
+        public List<Ruch> StosRuchow
+        {
+            get
+            {
+                return stosRuchow.ToList<Ruch>();
+            }
+            set
+            {
+                this.stosRuchow = new Stack<Ruch>(value);
+            }
+        }
 
         //metody
         public void DodajPozycje(int x1, int y1, Pole pole1, int x2, int y2, Pole pole2)

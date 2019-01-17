@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace SzachyWPF
 {
@@ -11,7 +13,10 @@ namespace SzachyWPF
         /// <summary>
         /// 
         /// </summary>
-        
+        public Plansza(bool czyGraKomputer): this()
+        {
+            this.czyGraKomputer = czyGraKomputer;
+        }
         public Plansza()
         {
             for (int i = 0; i < 8; i++)
@@ -46,13 +51,50 @@ namespace SzachyWPF
         }
         //pola        
         private Pole poleBezPionka = new PustePole();
-        public Kontrolki kontrolki; 
+        internal Kontrolki kontrolki; 
         private Pole[,] plansza = new Pole[8, 8];
-        private int licznikRuchow = 0;
-        private IZapisywaczRuchow zapisywaczRuchow = new ZapisywaczRuchow();
+        public int licznikRuchow = 0;
+        public ZapisywaczRuchow zapisywaczRuchow = new ZapisywaczRuchow();
         private Stack<Pole> pojemnikNaFigury1 = new Stack<Pole>();
         private Stack<Pole> pojemnikNaFigury2 = new Stack<Pole>();
         public Promocja promocja = new Promocja();
+        public bool czyGraKomputer;
+
+        //wlasciwosci
+        public Pole[][] WlasciwoscPlanszy
+        {
+            get
+            {
+                return zwrocTabliceTablic(plansza);
+            }
+            set
+            {
+                this.plansza = zwrocTabliceDwuwymiarowa(value);
+            }
+        }
+
+        public List<Pole> PojemnikNaFigury1
+        {
+            get
+            {
+                return pojemnikNaFigury1.ToList<Pole>();
+            }
+            set
+            {
+                this.pojemnikNaFigury1 = new Stack<Pole>(value);
+            }
+        }
+        public List<Pole> PojemnikNaFigury2
+        {
+            get
+            {
+                return pojemnikNaFigury2.ToList<Pole>();
+            }
+            set
+            {
+                this.pojemnikNaFigury2 = new Stack<Pole>(value);
+            }
+        }
 
         //metody
         public bool RuszGlowny(int x1, int y1, int x2, int y2, Gracz gracz)
@@ -309,6 +351,54 @@ namespace SzachyWPF
             {
                 plansza[x, y] = new Skoczek(gracz);
             }
+        }
+
+        private Pole[][] zwrocTabliceTablic(Pole[,] plansza)
+        {
+            Pole[][] nowaPlansza = new Pole[8][];
+            for (int i = 0; i < 8; i++)
+            {
+                nowaPlansza[i] = new Pole[8];
+            }
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    nowaPlansza[i][j] = plansza[i, j];
+                }
+            }
+            return nowaPlansza;
+        }
+        private Pole[,] zwrocTabliceDwuwymiarowa(Pole[][] plansza)
+        {
+            Pole[,] nowaPlansza = new Pole[8,8];
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    nowaPlansza[i,j] = plansza[i][j];
+                }
+            }
+            return nowaPlansza;
+        }
+        public void zapiszXML(string nazwa)
+        {
+            Type[] tablicaTypow = new Type[]{ typeof(Hetman), typeof(Wieza),typeof(Pionek), typeof(Krol), typeof(Skoczek), typeof(Goniec), typeof(PustePole) };
+            XmlSerializer xs = new XmlSerializer(typeof(Plansza),tablicaTypow);
+            FileStream fs = new FileStream("zapisaneGry/" + nazwa+ ".xml", FileMode.Create);
+            xs.Serialize(fs, this);
+            fs.Close();
+        }
+        public static Plansza OdczytajXML(string nazwa)
+        {
+            Type[] tablicaTypow = new Type[] { typeof(Hetman), typeof(Wieza), typeof(Pionek), typeof(Krol), typeof(Skoczek), typeof(Goniec), typeof(PustePole) };
+            XmlSerializer xs = new XmlSerializer(typeof(Plansza), tablicaTypow);
+            using (FileStream fs = new FileStream("zapisaneGry/" + nazwa + ".xml", FileMode.Open))
+            {
+                return xs.Deserialize(fs) as Plansza;
+            }            
         }
     }
 }

@@ -67,11 +67,17 @@
     <Compile Include="PustePole.cs" />
     <Compile Include="Ruch.cs" />
     <Compile Include="RuchAI.cs" />
+    <Compile Include="WczytajWindow.xaml.cs">
+      <DependentUpon>WczytajWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wieza.cs" />
     <Compile Include="MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ZapisywaczRuchow.cs" />
+    <Compile Include="ZapiszWindow.xaml.cs">
+      <DependentUpon>ZapiszWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -95,6 +101,14 @@
     <Page Include="PromocjaWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WczytajWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZapiszWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

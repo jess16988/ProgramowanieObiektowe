@@ -1,6 +1,6 @@
 ﻿namespace SzachyWPF
 {
-    interface IZapisywaczRuchow
+    public interface IZapisywaczRuchow
     {
         /// <summary>
         /// 
