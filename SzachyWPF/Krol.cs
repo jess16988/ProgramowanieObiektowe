@@ -14,19 +14,15 @@ namespace SzachyWPF
         /// <param name="gracz"></param>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public Krol(Gracz gracz, int x, int y) : base(gracz,900)
+        public Krol(Gracz gracz) : base(gracz,900)
         {
             this.symbol = "K";
-            this.x = x;
-            this.y = y;
         }
         public Krol()
         {
 
         }
         //pola
-        int x;
-        int y;
         public override bool SprawdzRuchNaPustejPlanszy(int x1, int y1, int x2, int y2)
         {
             int x = x1 - x2;
@@ -39,16 +35,6 @@ namespace SzachyWPF
         public override bool SprawdzRuchDoBicia(int x1, int y1, int x2, int y2)
         {
             return this.SprawdzRuchNaPustejPlanszy(x1, y1, x2, y2);
-        }
-        public void ZmienLokalizacje(int x, int y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-        public int[] ZwrocLokaliacje()
-        {
-            int[] tablica = { this.x, this.y };
-            return tablica;
         }
     }
 }

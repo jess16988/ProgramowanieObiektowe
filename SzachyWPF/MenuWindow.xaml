@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SzachyWPF"
         mc:Ignorable="d"
-        Title="Menu" Height="450" Width="367.789">
+        Title="Menu" Height="450" Width="380">
     <Grid Margin="0,0,0,0" HorizontalAlignment="Left" Width="348">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>

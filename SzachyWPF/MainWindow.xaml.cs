@@ -326,7 +326,7 @@ namespace SzachyWPF
         {
             ZapiszWindow oknoZapisu = new ZapiszWindow();
             oknoZapisu.ShowDialog();
-            if (oknoZapisu.CzyZapisac()) plansza.zapiszXML(oknoZapisu.sciezka);
+            if (oknoZapisu.CzyZapisac()) plansza.ZapiszXML(oknoZapisu.sciezka);
         }
 
 
