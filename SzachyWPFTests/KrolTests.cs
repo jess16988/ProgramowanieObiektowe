@@ -26,7 +26,7 @@ namespace SzachyWPF.Tests
         [TestMethod()]
         public void SprawdzRuchNaPustejPlanszyTest()
         {
-            Krol target = new Krol(Gracz.CZARNE, 1, 1);
+            Krol target = new Krol(Gracz.CZARNE);
             int x1 = 3;
             int x2 = 4;
             int y1 = 3;

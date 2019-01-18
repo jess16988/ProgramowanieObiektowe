@@ -39,13 +39,13 @@ namespace SzachyWPF.Tests
         [TestMethod()]
         public void SprawdzRuchDoBiciaTest()
         {
-            Pionek target = new Pionek(Gracz.BIALE);
+            Pionek target = new Pionek(Gracz.CZARNE);
             int x1 = 4;
             int x2 = 5;
             int y1 = 5;
             int y2 = 6;
             bool expected = true;
-            bool actual = target.SprawdzRuchNaPustejPlanszy(x1, y1, x2, y2);
+            bool actual = target.SprawdzRuchDoBicia(x1, y1, x2, y2);
             Assert.AreEqual(expected, actual);
         }
 
