@@ -8,11 +8,11 @@ using System.Xml.Serialization;
 
 namespace SzachyWPF
 {
+    /// <summary>
+    /// Plansza do szachow
+    /// </summary>
     public class Plansza
     {
-        /// <summary>
-        /// 
-        /// </summary>
         public Plansza(bool czyGraKomputer): this()
         {
             this.czyGraKomputer = czyGraKomputer;
@@ -97,6 +97,10 @@ namespace SzachyWPF
         }
 
         //metody
+        /// <summary>
+        /// Wykonuje ruch na planszy z x1,y1 do x2,y2 dla gracza gracz
+        /// </summary>
+        /// <returns>Prawda jesli ruch sie powiodl, falsz jesli nie</returns>
         public bool RuszGlowny(int x1, int y1, int x2, int y2, Gracz gracz)
         {
             if (SprawdzCalyRuch(x1, y1, x2, y2, gracz) == true)
@@ -108,6 +112,10 @@ namespace SzachyWPF
             }
             return false;
         }
+        /// <summary>
+        /// Sprawdza czy mozliwy jest ruch na planszy z x1,y1 do x2,y2 wykonywany przez gracza gracz
+        /// </summary>
+        /// <returns>Prawda jesli tak, falsz jesli nie</returns>
         public bool SprawdzCalyRuch(int x1, int y1, int x2, int y2, Gracz? gracz)
         {
             if (sprawdzCalyRuchZaWyjatkiemKrola(x1, y1, x2, y2, gracz) == true)
@@ -121,7 +129,6 @@ namespace SzachyWPF
 
                 if (x2Krola2 == -1)
                 {
-                    // w przypadku zaznaczania cos bilo krola i stierdzalo ze ruch jest ok a krola nie bylo
                     CofnijRuch();
                     return true;
                 }           
@@ -189,6 +196,9 @@ namespace SzachyWPF
         {
             zapisywaczRuchow.DodajPozycje(x1, y1, plansza[x1, y1], x2, y2, plansza[x2, y2]);
         }
+        /// <summary>
+        /// Cofa ostatnio wykonany ruch
+        /// </summary>
         public void CofnijRuch()
         {
             Ruch ruch = zapisywaczRuchow.WyciagnijPozycje();
@@ -205,7 +215,9 @@ namespace SzachyWPF
                 }
             }
         }
-
+        /// <summary>
+        /// Wykonuje ruch z x1,y1 do x2,y2 bez sprawdzania
+        /// </summary>
         public void WykonajRuch(int x1, int y1, int x2, int y2)
         {
             zapiszRuch(x1, y1, x2, y2);
@@ -253,7 +265,9 @@ namespace SzachyWPF
             if (pojemnikNaFigury1.Count() == 12 || pojemnikNaFigury2.Count() == 12) return true;
             else return false;
         }
-
+        /// <summary>
+        /// Zwraca ile zostalo wykonanych ruchow liczac od zera
+        /// </summary>
         public int IleRuchow()
         {
             return licznikRuchow;
@@ -262,16 +276,25 @@ namespace SzachyWPF
         {
             return plansza;
         }
+        /// <summary>
+        /// Zwraca pojemnik an figury gracza 1
+        /// </summary>
         public Stack<Pole> ZwrocPojemnik1()
         {
             return pojemnikNaFigury1;
         }
+        /// <summary>
+        /// zwraca pojemnik na figury gracza 2
+        /// </summary>
         public Stack<Pole> ZwrocPojemnik2()
         {
             return pojemnikNaFigury2;
         }
 
-
+        /// <summary>
+        /// ocenia wartosc planszy gracza ktory ma wykonac teraz ruch
+        /// </summary>
+        /// <returns>suma wartosci pionkow</returns>
         public int OcenWartoscPlanszy()
         {
             Gracz aktywnyGracz = licznikRuchow % 2 != 0 ? Gracz.BIALE : Gracz.CZARNE;
@@ -286,7 +309,11 @@ namespace SzachyWPF
             }
             return wartosc;
         }
-   
+        /// <summary>
+        /// zwraca wszystkie mozliwe ruchy dla gracza gracz
+        /// </summary>
+        /// <param name="gracz"> gracz wykonujacy ruchy</param>
+        /// <returns>tablica obiektow RuchAI</returns>
         public List<RuchAI> ZwrocWszystkieMozliweRuchy(Gracz? gracz)
         {
             List<RuchAI> ruchy = new List<RuchAI>();
@@ -327,6 +354,10 @@ namespace SzachyWPF
                 ruchy[n] = wartosc;
             }
         }
+        /// <summary>
+        /// Metoda promocji pionka
+        /// </summary>
+        /// <param name="DoWypromowania">Figura do ktorej pionek zostanie wypromowany</param>
         public void Wypromuj(PromocjaWindow.Figura DoWypromowania)
         {
             int x = promocja.x;
@@ -383,6 +414,10 @@ namespace SzachyWPF
             }
             return nowaPlansza;
         }
+        /// <summary>
+        /// Serializuje plansze do XML
+        /// </summary>
+        /// <param name="nazwa">nazwa pliku</param>
         public void ZapiszXML(string nazwa)
         {
             Type[] tablicaTypow = new Type[]{ typeof(Hetman), typeof(Wieza),typeof(Pionek), typeof(Krol), typeof(Skoczek), typeof(Goniec), typeof(PustePole) };
@@ -391,6 +426,11 @@ namespace SzachyWPF
             xs.Serialize(fs, this);
             fs.Close();
         }
+        /// <summary>
+        /// Zwraca obiekt planszy odczytany z pliku XML
+        /// </summary>
+        /// <param name="nazwa">nazwa pliku </param>
+        /// <returns></returns>
         public static Plansza OdczytajXML(string nazwa)
         {
             Type[] tablicaTypow = new Type[] { typeof(Hetman), typeof(Wieza), typeof(Pionek), typeof(Krol), typeof(Skoczek), typeof(Goniec), typeof(PustePole) };

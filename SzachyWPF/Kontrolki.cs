@@ -9,9 +9,8 @@ namespace SzachyWPF
     public class Kontrolki
     {
         /// <summary>
-        /// 
+        /// Obiekt do sprawdzania szachu, mata i pata na danej planszy
         /// </summary>
-        /// <param name="plansza"></param>
         public Kontrolki(Plansza plansza)
         {
             this.plansza = plansza;
@@ -30,6 +29,9 @@ namespace SzachyWPF
         private Pole[,] pola;
 
         //metody
+        /// <summary>
+        /// Znajduje pozyje krola danego gracza i przekazuje ja do pol obiektu
+        /// </summary>
         public void znajdzKroli(Gracz? gracz)
         {
             this.gracz = gracz;
@@ -52,8 +54,10 @@ namespace SzachyWPF
                     }
                 }
             }
-            //kontrolki.PrzekazPozycjeKroli(x1Krola1, y1Krola1, x2Krola2, y2Krola2);
         }
+        /// <summary>
+        /// Sprawdza czy doszlo do szachu, mata lub pata
+        /// </summary>
         public void Sprawdz()
         {
             czySzach = false;
@@ -64,7 +68,7 @@ namespace SzachyWPF
             czyPat = sprawdzCzyPat();
         }
 
-        private bool sprawdzCzySzach() //gracz ktory ostatnio sie poruszyl
+        private bool sprawdzCzySzach() 
         {
 
             bool szach = false;
@@ -87,7 +91,7 @@ namespace SzachyWPF
             if (plansza.ZwrocWszystkieMozliweRuchy(pola[xKrola, yKrola].ZwrocGracza()).Count == 0) return true;
             else return false;
         }
-        private bool sprawdzCzyPat()//gracz ktory ostatnio sie poruszyl
+        private bool sprawdzCzyPat()
         {
             Gracz gracz2;
             if (gracz == Gracz.BIALE) gracz2 = Gracz.CZARNE;
