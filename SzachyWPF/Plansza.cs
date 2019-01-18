@@ -27,7 +27,7 @@ namespace SzachyWPF
                 }
             }
             plansza[3, 0] = new Hetman(Gracz.CZARNE);
-            plansza[4, 0] = new Krol(Gracz.CZARNE, 4, 0);
+            plansza[4, 0] = new Krol(Gracz.CZARNE);
             plansza[5, 0] = new Goniec(Gracz.CZARNE);
             plansza[2, 0] = new Goniec(Gracz.CZARNE);
             plansza[6, 0] = new Skoczek(Gracz.CZARNE);
@@ -35,7 +35,7 @@ namespace SzachyWPF
             plansza[0, 0] = new Wieza(Gracz.CZARNE);
             plansza[7, 0] = new Wieza(Gracz.CZARNE);
             plansza[3, 7] = new Hetman(Gracz.BIALE);
-            plansza[4, 7] = new Krol(Gracz.BIALE, 3, 7);
+            plansza[4, 7] = new Krol(Gracz.BIALE);
             plansza[5, 7] = new Goniec(Gracz.BIALE);
             plansza[2, 7] = new Goniec(Gracz.BIALE);
             plansza[6, 7] = new Skoczek(Gracz.BIALE);
@@ -383,7 +383,7 @@ namespace SzachyWPF
             }
             return nowaPlansza;
         }
-        public void zapiszXML(string nazwa)
+        public void ZapiszXML(string nazwa)
         {
             Type[] tablicaTypow = new Type[]{ typeof(Hetman), typeof(Wieza),typeof(Pionek), typeof(Krol), typeof(Skoczek), typeof(Goniec), typeof(PustePole) };
             XmlSerializer xs = new XmlSerializer(typeof(Plansza),tablicaTypow);

@@ -34,11 +34,13 @@ namespace SzachyWPF
                 nazwa = nazwa.Remove(nazwa.Length - 4);
                 przycisk = new Button();
                 przycisk.Content = nazwa;
-                przycisk.Click += wczytajPlansze;
+                przycisk.Height = 35;
+                przycisk.Margin = new Thickness(3);
+                przycisk.Click += WczytajPlansze;
                 ZapisyPanel.Children.Add(przycisk);
             }        
         }
-        public void wczytajPlansze(object sender, RoutedEventArgs e)
+        public void WczytajPlansze(object sender, RoutedEventArgs e)
         {
             nazwa = (sender as Button).Content as string;
             this.Close();
