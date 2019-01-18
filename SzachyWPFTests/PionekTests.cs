@@ -39,7 +39,7 @@ namespace SzachyWPF.Tests
         [TestMethod()]
         public void SprawdzRuchDoBiciaTest()
         {
-            Pionek target = new Pionek(Gracz.CZARNE);
+            Pionek target = new Pionek(Gracz.BIALE);
             int x1 = 4;
             int x2 = 5;
             int y1 = 5;
