@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
+    /// <summary>
+    /// Ruch figury 
+    /// </summary>
     public class Ruch
     {
-        /// <summary>
-        /// 
-        /// </summary>
 
         public Ruch()
         {
@@ -23,6 +23,9 @@ namespace SzachyWPF
         public int x2 { get; }
         public int y2 { get; }
 
+        /// <summary>
+        /// Metoda ruchu figury. (x1, y1) - pozycja początkowa; (x2, y2) - pozycja końcowa
+        /// </summary>
         public Ruch(int x1, int y1, Pole polePierwsze, int x2, int y2, Pole poleDrugie)
         {
             this.polePierwsze = polePierwsze;

@@ -6,18 +6,24 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
+    /// <summary>
+    /// Gdy pionek dojdzie do swojej liny przemiany gracz wybiera w jak¹ figurê chce go przemienic
+    /// </summary>
     public class Promocja
     {
-        /// <summary>
-        /// 
-        /// </summary>
 
         //pola
         public bool czyPromocja = false;
         public int x;
         public int y;
 
-        //metody
+        //metody        
+        /// <summary>
+        /// Sprawdza czy pionek jest na swojej lini przemiany (dla bia³ych y=0, dla czarnych y=7)
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
+        /// <param name="bierka">The bierka.</param>
         public void Sprawdz(int x, int y, Pole bierka)
         {
             czyPromocja = false;

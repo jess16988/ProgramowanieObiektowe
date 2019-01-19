@@ -8,13 +8,7 @@ namespace SzachyWPF
 {
     class Prosta
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="x1"></param>
-        /// <param name="y1"></param>
-        /// <param name="x2"></param>
-        /// <param name="y2"></param>
+
         public Prosta(int x1, int y1, int x2, int y2)
         {
             if ((x2 - x1) == 0)

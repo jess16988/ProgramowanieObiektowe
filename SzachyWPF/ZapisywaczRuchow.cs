@@ -8,9 +8,7 @@ namespace SzachyWPF
 {
     public class ZapisywaczRuchow : IZapisywaczRuchow
     {
-        /// <summary>
-        /// 
-        /// </summary>
+
         private Stack<Ruch> stosRuchow = new Stack<Ruch>();
         public List<Ruch> ListaRuchow = new List<Ruch>();
 

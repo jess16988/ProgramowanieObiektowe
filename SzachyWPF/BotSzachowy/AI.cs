@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace SzachyWPF
 {
+    /// <summary>
+    /// Gra komputera
+    /// </summary>
     class AI
     {
-        /// <summary>
-        /// 
-        /// </summary>
+
         //pola   
         RuchAI ruch0 = new RuchAI(0, 0, 0, 0, 0);
 
@@ -19,7 +20,7 @@ namespace SzachyWPF
             List<RuchAI> czarneRuchy = plansza.ZwrocWszystkieMozliweRuchy(Gracz.CZARNE);
             int min = 1000;           
             RuchAI najlepszyCzarnyRuch = ruch0;
-                 
+     
             foreach (var czarnyRuch in czarneRuchy)
             {
                 plansza.WykonajRuch(czarnyRuch.x1, czarnyRuch.y1, czarnyRuch.x2, czarnyRuch.y2);
@@ -45,6 +46,11 @@ namespace SzachyWPF
             Console.Read();
             return najlepszyCzarnyRuch;
         }
+
+        /// <summary>
+        /// Komputer wybiera najlepszy z wszystkich możliwych ruchów.
+        /// </summary>
+
         public RuchAI ZwrocNajlepszyRuch(Plansza plansza)
         {
            return zwrocNajlepszyRuchZPierwszejPlanszy(plansza);
