@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AI.cs" />
+    <Compile Include="BotSzachowy\AI.cs" />
     <Compile Include="Gracz.cs" />
     <Compile Include="IZapisywaczRuchow.cs" />
     <Compile Include="Kontrolki.cs" />
@@ -66,7 +66,7 @@
     <Compile Include="Prosta.cs" />
     <Compile Include="Bierki\PustePole.cs" />
     <Compile Include="Ruch.cs" />
-    <Compile Include="RuchAI.cs" />
+    <Compile Include="BotSzachowy\RuchAI.cs" />
     <Compile Include="WczytajWindow.xaml.cs">
       <DependentUpon>WczytajWindow.xaml</DependentUpon>
     </Compile>
