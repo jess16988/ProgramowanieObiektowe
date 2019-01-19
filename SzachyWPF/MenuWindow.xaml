@@ -13,7 +13,5 @@
         <Button x:Name="nowaGraAIButton" Content="Nowa gra z komputerem" HorizontalAlignment="Left" Margin="75,93,0,0" VerticalAlignment="Top" Width="232" Height="33" Click="nowaGraAIButton_Click_1"/>
         <Button x:Name="nowaGraCzlowiekButton" Content="Nowa gra z graczem" HorizontalAlignment="Left" Margin="75,148,0,0" VerticalAlignment="Top" Width="232" Height="33" Click="nowaGraCzlowiekButton_Click"/>
         <Button x:Name="wczytajGreButton" Content="Wczytaj grę" HorizontalAlignment="Left" Margin="75,201,0,0" VerticalAlignment="Top" Width="232" Height="33" Click="wczytajGreButton_Click"/>
-        <Button x:Name="zapiszGreButton" Content="Zapisz grę" HorizontalAlignment="Left" Margin="75,253,0,0" VerticalAlignment="Top" Width="232" Height="33" Click="zapiszGreButton_Click"/>
-        <Button x:Name="tablicaWynikowButton" Content="Tablica wyników" HorizontalAlignment="Left" Margin="75,307,0,0" VerticalAlignment="Top" Width="232" Height="33" Click="tablicaWynikowButton_Click"/>
     </Grid>
 </Window>
