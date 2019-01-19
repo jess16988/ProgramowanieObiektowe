@@ -141,7 +141,7 @@ namespace SzachyWPF
                     if (czyGraKomputer == true)
                     {
                         //AI
-                        rysujPlansze(); //jesli chcemy zeby wypisywalo rowniez szach wykonany przez nas
+                        rysujPlansze(); 
                         rysujPojemniki();
                         WykonajRuchDlaAI();
                         //AI

@@ -48,9 +48,8 @@ namespace SzachyWPF
         }
 
         /// <summary>
-        /// Komputer wybiera najlepszy z wszystkich możliwych ruchów.
+        /// Zwraca najlepszy wedlug kompuetera ruch
         /// </summary>
-
         public RuchAI ZwrocNajlepszyRuch(Plansza plansza)
         {
            return zwrocNajlepszyRuchZPierwszejPlanszy(plansza);
