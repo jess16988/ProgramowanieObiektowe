@@ -29,7 +29,7 @@ namespace SzachyWPF
                 {
                     plansza.kontrolki.znajdzKroli(Gracz.CZARNE);
                     plansza.kontrolki.Sprawdz();
-                    if(plansza.kontrolki.czyMat||plansza.kontrolki.czyPat) // nie wiem czy jest sens zostawiac pat
+                    if(plansza.kontrolki.czyMat||plansza.kontrolki.czyPat)
                     { 
                         plansza.CofnijRuch();
                         return czarnyRuch;
