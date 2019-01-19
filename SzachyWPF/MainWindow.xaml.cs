@@ -18,7 +18,7 @@ using System.Xml.Serialization;
 namespace SzachyWPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Widok Main Window (planszy do gry)
     /// </summary>
   
     public partial class MainWindow : Window
@@ -40,6 +40,10 @@ namespace SzachyWPF
         private int ySzachowanegoKrola;
         AI ai;
 
+        /// <summary>
+        /// Wygląd planszy w przypadku gry z komputerem
+        /// </summary>
+
         public MainWindow(Plansza plansza, bool czyGraKomputer)
         {
             this.plansza = plansza;
@@ -59,8 +63,12 @@ namespace SzachyWPF
             utworzPola();
             wczytajObrazkizPlikow();
             rysujPlansze();            
-        }       
-        //metody
+        }
+        //metody        
+        /// <summary>
+        /// Tworzenie pól na planszy. Ustawianie je jako przyciski, by móc wybierać pole na które figura ma się przesunąć.
+        /// Nadawanie kolorów planszy.
+        /// </summary>
         private void utworzPola()
         {
             int[] xy = new int[2];
@@ -88,6 +96,12 @@ namespace SzachyWPF
                 }              
             }
         }
+
+        /// <summary>
+        /// Wybór figury(dokładniej pozycji na której się znajdują) i przesunięcie jej na inne pole.
+        /// Jeśli kliknięte jest dwa razy to samo pole - ruch się nie wykonuję, cofa się kliknięcie
+        /// i znowu można wybrać figure.
+        /// </summary>
         private void przeslijPozycje(object sender, RoutedEventArgs e)
         {
 
@@ -316,6 +330,9 @@ namespace SzachyWPF
             }
         }
 
+        /// <summary>
+        /// Wykonanie ruchu komputera.
+        /// </summary>
         public void WykonajRuchDlaAI()
         {
             RuchAI ruch = ai.ZwrocNajlepszyRuch(plansza);
