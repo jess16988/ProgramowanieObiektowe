@@ -57,7 +57,7 @@ namespace SzachyWPF
         public ZapisywaczRuchow zapisywaczRuchow = new ZapisywaczRuchow();
         private Stack<Pole> pojemnikNaFigury1 = new Stack<Pole>();
         private Stack<Pole> pojemnikNaFigury2 = new Stack<Pole>();
-        public Promocja promocja = new Promocja();
+        internal Promocja promocja = new Promocja();
         public bool czyGraKomputer;
 
         //wlasciwosci

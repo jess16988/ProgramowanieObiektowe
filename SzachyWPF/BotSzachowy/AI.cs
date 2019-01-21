@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SzachyWPF
 {
     /// <summary>
-    /// Gra komputera
+    /// Bot szachowy
     /// </summary>
     class AI
     {
@@ -48,7 +48,7 @@ namespace SzachyWPF
         }
 
         /// <summary>
-        /// Zwraca najlepszy wedlug kompuetera ruch
+        /// Zwraca najlepszy wedlug kompuetera ruch z danej jako parametr planszy
         /// </summary>
         public RuchAI ZwrocNajlepszyRuch(Plansza plansza)
         {

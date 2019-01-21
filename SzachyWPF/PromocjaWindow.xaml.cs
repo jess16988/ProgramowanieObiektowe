@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace SzachyWPF
 {
-    /// <summary>
-    /// Interaction logic for Window1.xaml
-    /// </summary>
     public partial class PromocjaWindow : Window
     {
         public PromocjaWindow(BitmapImage[] obrazki, int ktoraTura)
