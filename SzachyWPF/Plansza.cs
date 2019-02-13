@@ -59,6 +59,7 @@ namespace SzachyWPF
         private Stack<Pole> pojemnikNaFigury2 = new Stack<Pole>();
         internal Promocja promocja = new Promocja();
         public bool czyGraKomputer;
+        private List<Przelot> przeloty = new List<Przelot>();
 
         //wlasciwosci
         public Pole[][] WlasciwoscPlanszy
@@ -103,11 +104,19 @@ namespace SzachyWPF
         /// <returns>Prawda jesli ruch sie powiodl, falsz jesli nie</returns>
         public bool RuszGlowny(int x1, int y1, int x2, int y2, Gracz gracz)
         {
+            
             if (SprawdzCalyRuch(x1, y1, x2, y2, gracz) == true)
             {
                 WykonajRuch(x1, y1, x2, y2);
+                WyczyscPrzeloty();
                 kontrolki.Sprawdz();
                 promocja.Sprawdz(x2, y2, plansza[x2, y2]);
+                if ((y2 - y1 == 2 || y2 - y1 == -2) && plansza[x2,y2] is Pionek)
+                {                                     
+                    Przelot przelot = new Przelot(gracz, x2, (y2 + y1) / 2, licznikRuchow,x2,y2);
+                    plansza[x1, ((y2 + y1) / 2)] = przelot;
+                    przeloty.Add(przelot);
+                }
                 return true;
             }
             return false;
@@ -118,6 +127,7 @@ namespace SzachyWPF
         /// <returns>Prawda jesli tak, falsz jesli nie</returns>
         public bool SprawdzCalyRuch(int x1, int y1, int x2, int y2, Gracz? gracz)
         {
+            
             if (sprawdzCalyRuchZaWyjatkiemKrola(x1, y1, x2, y2, gracz) == true)
             {
                  WykonajRuch(x1, y1, x2, y2);                
@@ -176,7 +186,7 @@ namespace SzachyWPF
         }
         private bool sprawdzKolizje(int x1, int y1, int x2, int y2)
         {
-            if (plansza[x1, y1] is Skoczek || plansza[x1, y1] is Krol) return true;
+            if (plansza[x1, y1] is Skoczek || plansza[x1, y1] is Krol|| plansza[x2,y2] is Przelot) return true;
             int[,] tablica = Prosta.ZwrocPunktyKolizji(x1, y1, x2, y2);
             int x = 0;
             while (tablica[0, x] != 100 && tablica[1, x] != 100)
@@ -188,7 +198,9 @@ namespace SzachyWPF
         }
         private bool sprawdzGracza(int x1, int y1, int x2, int y2, Gracz? gracz)
         {
-            if (plansza[x1, y1].ZwrocGracza() == plansza[x2, y2].ZwrocGracza() || plansza[x1, y1].ZwrocGracza() != gracz) return false;
+            if (plansza[x1, y1].ZwrocGracza() != gracz) return false;
+            if (plansza[x2, y2] is Przelot) return true;
+            if (plansza[x1, y1].ZwrocGracza() == plansza[x2, y2].ZwrocGracza()) return false;            
             else return true;
         }
 
@@ -200,7 +212,7 @@ namespace SzachyWPF
         /// Cofa ostatnio wykonany ruch
         /// </summary>
         public void CofnijRuch()
-        {
+        {           
             Ruch ruch = zapisywaczRuchow.WyciagnijPozycje();
             if (ruch != null)
             {
@@ -220,17 +232,20 @@ namespace SzachyWPF
         /// </summary>
         public void WykonajRuch(int x1, int y1, int x2, int y2)
         {
+            
             zapiszRuch(x1, y1, x2, y2);
             zbitaFiguraDoPijemnika(plansza[x2, y2]);
 
             if (plansza[x1, y1] is Pionek)
-            {
+            {             
                 (plansza[x1, y1] as Pionek).WykonalPierwszyRuch();
+                
             }
             plansza[x2, y2] = plansza[x1, y1];
             plansza[x1, y1] = poleBezPionka;
             
-            licznikRuchow++;            
+            licznikRuchow++;    
+            
         }
         private bool czyRuchNieOdkrylKrola(int x1Krola1, int y1Krola1, Gracz? gracz)
         {
@@ -382,6 +397,16 @@ namespace SzachyWPF
             {
                 plansza[x, y] = new Skoczek(gracz);
             }
+        }
+        private void WyczyscPrzeloty()
+        {
+            if (przeloty.Count() != 0)
+            {
+                Przelot przelot = przeloty.Last();
+                if (plansza[przelot.x, przelot.y] is Pionek) plansza[przelot.XPionka, przelot.YPionka] = poleBezPionka;
+                else plansza[przelot.x, przelot.y] = poleBezPionka;
+            }
+            
         }
 
         private Pole[][] zwrocTabliceTablic(Pole[,] plansza)

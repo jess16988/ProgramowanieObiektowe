@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Prosta.cs" />
     <Compile Include="Bierki\PustePole.cs" />
+    <Compile Include="Przelot.cs" />
     <Compile Include="Ruch.cs" />
     <Compile Include="BotSzachowy\RuchAI.cs" />
     <Compile Include="WczytajWindow.xaml.cs">

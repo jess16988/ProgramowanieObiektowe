@@ -212,7 +212,7 @@ namespace SzachyWPF
         {
             if(pole.ZwrocSymbol() != " ")
             {
-                
+                if (pole is Przelot) return obrazki[0];
                 if (pole is Pionek && pole.ZwrocGracza() == Gracz.BIALE)
                     return obrazki[0];
                 else if (pole is Pionek && pole.ZwrocGracza() == Gracz.CZARNE)
@@ -275,11 +275,12 @@ namespace SzachyWPF
             double wysokosc = pola[0, 0].ActualHeight;
             double szerokosc = pola[0, 0].ActualWidth;
             foreach (var figura in pojemnik)
-            {
+            {               
                 obrazkiZbitych[i] = new Image();
                 obrazkiZbitych[i].Height = wysokosc;
-                obrazkiZbitych[i].Width = szerokosc;   
-                obrazkiZbitych[i].Source = zwrocPasjacyObrazek(figura);         
+                obrazkiZbitych[i].Width = szerokosc;
+                if(figura is Przelot) obrazkiZbitych[i].Source = zwrocPasjacyObrazek(new Pionek(figura.gracz));
+                else obrazkiZbitych[i].Source = zwrocPasjacyObrazek(figura);         
                 if(i<8) stackPanel1.Children.Add(obrazkiZbitych[i]);
                 else stackPanel2.Children.Add(obrazkiZbitych[i]);
                 i++;

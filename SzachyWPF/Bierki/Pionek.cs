@@ -16,11 +16,11 @@ namespace SzachyWPF
         {
 
         }
-        public Pionek(Gracz gracz) : base(gracz, 10)
+        public Pionek(Gracz? gracz) : base(gracz, 10)
         {
             this.symbol = "P";
         }
-        private bool czyWykonalPierwszyRuch = false;
+        public bool czyWykonalPierwszyRuch = false;
 
         public override bool SprawdzRuchNaPustejPlanszy(int x1, int y1, int x2, int y2)
         {
