@@ -26,20 +26,20 @@ namespace SzachyWPF
                     this.plansza[i, j] = poleBezPionka;
                 }
             }
-            plansza[3, 0] = new Hetman(Gracz.CZARNE);
+            //plansza[3, 0] = new Hetman(Gracz.CZARNE);
             plansza[4, 0] = new Krol(Gracz.CZARNE);
-            plansza[5, 0] = new Goniec(Gracz.CZARNE);
-            plansza[2, 0] = new Goniec(Gracz.CZARNE);
-            plansza[6, 0] = new Skoczek(Gracz.CZARNE);
-            plansza[1, 0] = new Skoczek(Gracz.CZARNE);
+            //plansza[5, 0] = new Goniec(Gracz.CZARNE);
+            //plansza[2, 0] = new Goniec(Gracz.CZARNE);
+            //plansza[6, 0] = new Skoczek(Gracz.CZARNE);
+            //plansza[1, 0] = new Skoczek(Gracz.CZARNE);
             plansza[0, 0] = new Wieza(Gracz.CZARNE);
             plansza[7, 0] = new Wieza(Gracz.CZARNE);
-            plansza[3, 7] = new Hetman(Gracz.BIALE);
+            //plansza[3, 7] = new Hetman(Gracz.BIALE);
             plansza[4, 7] = new Krol(Gracz.BIALE);
-            plansza[5, 7] = new Goniec(Gracz.BIALE);
-            plansza[2, 7] = new Goniec(Gracz.BIALE);
-            plansza[6, 7] = new Skoczek(Gracz.BIALE);
-            plansza[1, 7] = new Skoczek(Gracz.BIALE);
+            //plansza[5, 7] = new Goniec(Gracz.BIALE);
+            //plansza[2, 7] = new Goniec(Gracz.BIALE);
+            //plansza[6, 7] = new Skoczek(Gracz.BIALE);
+            //plansza[1, 7] = new Skoczek(Gracz.BIALE);
             plansza[0, 7] = new Wieza(Gracz.BIALE);
             plansza[7, 7] = new Wieza(Gracz.BIALE);
             for (int i = 0; i < 8; i++)
@@ -60,6 +60,9 @@ namespace SzachyWPF
         internal Promocja promocja = new Promocja();
         public bool czyGraKomputer;
         private List<Przelot> przeloty = new List<Przelot>();
+       
+        private Roszada roszada = new Roszada();
+        
 
         //wlasciwosci
         public Pole[][] WlasciwoscPlanszy
@@ -107,6 +110,12 @@ namespace SzachyWPF
             
             if (SprawdzCalyRuch(x1, y1, x2, y2, gracz) == true)
             {
+                if (roszada.czyRoszada)
+                {
+                    WykonajRoszade();
+                    roszada.czyRoszada = false;
+                    return true;
+                }
                 WykonajRuch(x1, y1, x2, y2);
                 WyczyscPrzeloty();
                 kontrolki.Sprawdz();
@@ -126,7 +135,11 @@ namespace SzachyWPF
         /// </summary>
         /// <returns>Prawda jesli tak, falsz jesli nie</returns>
         public bool SprawdzCalyRuch(int x1, int y1, int x2, int y2, Gracz? gracz)
-        {
+        {           
+            if (SprawdzRoszade(x1, y1, x2, y2) == true)
+            {
+                return true;
+            }
             
             if (sprawdzCalyRuchZaWyjatkiemKrola(x1, y1, x2, y2, gracz) == true)
             {
@@ -407,6 +420,83 @@ namespace SzachyWPF
                 else plansza[przelot.x, przelot.y] = poleBezPionka;
             }
             
+        }       
+        private bool SprawdzRoszade(int x1, int y1, int x2, int y2)
+        {
+            int y;
+            Gracz gracz;
+            roszada.czyRoszada = false;
+            if (y1 != y2) return false;
+            if (licznikRuchow % 2 == 0 && y2 == 7)
+            {
+                y = 7;
+                gracz = Gracz.BIALE;
+            }
+            else if (licznikRuchow % 2 == 1 && y2 == 0)
+            {
+                y = 0;
+                gracz = Gracz.CZARNE;
+            }
+            else return false;
+
+            int x1Wiezy = 7;
+            int x2Wiezy = 5;
+            int x1Krola = 4;
+            int x2Krola = 5;
+            int kontrolna = 1;
+            if (x2 < x1)
+            {
+                x1Wiezy = 0;
+                x2Wiezy = 3;
+                x1Krola = 4;
+                x2Krola = 3;
+                kontrolna = -1;
+            }
+
+                if (plansza[4, y] is Krol && (plansza[0, y] is Wieza || plansza[7, y] is Wieza) && plansza[x1, y] is Krol)
+                {
+                    if ((x2 == 2 || x2 == 6) && (y == 7 || y == 0))
+                    {
+                        if (SprawdzCalyRuch(x1Wiezy, y, x2Wiezy, y, gracz) && SprawdzCalyRuch(x1Krola, y, x2Krola, y, gracz))
+                        {
+                            plansza[x2Krola, y] = plansza[x1Krola, y];
+                            plansza[x1Krola, y] = poleBezPionka;
+                            if (RuszGlowny(x1Krola + kontrolna, y, x2Krola + kontrolna, y, gracz))
+                            {
+                                CofnijRuch();
+                                roszada.czyRoszada = true;
+                                roszada.xKrola = x1Krola;
+                                roszada.yKrola = y;
+                                roszada.xWiezy = x1Wiezy;
+                                roszada.yWiezy = y;
+                                plansza[x1Krola, y] = plansza[x2Krola, y];
+                                plansza[x2Krola, y] = poleBezPionka;
+                                return true;
+                            }
+                            plansza[x1Krola, y] = plansza[x2Krola, y];
+                            plansza[x2Krola, y] = poleBezPionka;
+                        }
+                    }
+                }            
+            return false;
+        }
+        private void WykonajRoszade()
+        {
+            Gracz gracz;
+            int y = roszada.yKrola;
+            int mnoznik = 1;
+            if (licznikRuchow % 2 == 0) gracz = Gracz.BIALE;
+            else gracz = Gracz.CZARNE;
+            if (roszada.czyRoszada)
+            {
+                if (roszada.xKrola > roszada.xWiezy) mnoznik = -1;
+                plansza[roszada.xKrola + 1*mnoznik, y] = plansza[roszada.xKrola, y];
+                plansza[roszada.xKrola, y] = poleBezPionka;
+                RuszGlowny(roszada.xKrola + 1 * mnoznik, y, roszada.xKrola + 2 * mnoznik, y, gracz);
+                plansza[roszada.xKrola + 1 * mnoznik, y] = plansza[roszada.xWiezy, y];
+                plansza[roszada.xWiezy, y] = poleBezPionka;
+                
+            } 
         }
 
         private Pole[][] zwrocTabliceTablic(Pole[,] plansza)
