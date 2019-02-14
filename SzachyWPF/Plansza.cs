@@ -26,20 +26,20 @@ namespace SzachyWPF
                     this.plansza[i, j] = poleBezPionka;
                 }
             }
-            //plansza[3, 0] = new Hetman(Gracz.CZARNE);
+            plansza[3, 0] = new Hetman(Gracz.CZARNE);
             plansza[4, 0] = new Krol(Gracz.CZARNE);
-            //plansza[5, 0] = new Goniec(Gracz.CZARNE);
-            //plansza[2, 0] = new Goniec(Gracz.CZARNE);
-            //plansza[6, 0] = new Skoczek(Gracz.CZARNE);
-            //plansza[1, 0] = new Skoczek(Gracz.CZARNE);
+            plansza[5, 0] = new Goniec(Gracz.CZARNE);
+            plansza[2, 0] = new Goniec(Gracz.CZARNE);
+            plansza[6, 0] = new Skoczek(Gracz.CZARNE);
+            plansza[1, 0] = new Skoczek(Gracz.CZARNE);
             plansza[0, 0] = new Wieza(Gracz.CZARNE);
             plansza[7, 0] = new Wieza(Gracz.CZARNE);
-            //plansza[3, 7] = new Hetman(Gracz.BIALE);
+            plansza[3, 7] = new Hetman(Gracz.BIALE);
             plansza[4, 7] = new Krol(Gracz.BIALE);
-            //plansza[5, 7] = new Goniec(Gracz.BIALE);
-            //plansza[2, 7] = new Goniec(Gracz.BIALE);
-            //plansza[6, 7] = new Skoczek(Gracz.BIALE);
-            //plansza[1, 7] = new Skoczek(Gracz.BIALE);
+            plansza[5, 7] = new Goniec(Gracz.BIALE);
+            plansza[2, 7] = new Goniec(Gracz.BIALE);
+            plansza[6, 7] = new Skoczek(Gracz.BIALE);
+            plansza[1, 7] = new Skoczek(Gracz.BIALE);
             plansza[0, 7] = new Wieza(Gracz.BIALE);
             plansza[7, 7] = new Wieza(Gracz.BIALE);
             for (int i = 0; i < 8; i++)
@@ -126,6 +126,8 @@ namespace SzachyWPF
                     plansza[x1, ((y2 + y1) / 2)] = przelot;
                     przeloty.Add(przelot);
                 }
+                if (plansza[x2, y2] is Krol) (plansza[x2, y2] as Krol).CzyWykonalPierwszyRuch = true;
+                else if (plansza[x2, y2] is Wieza) (plansza[x2, y2] as Wieza).CzyWykonalPierwszyRuch = true;
                 return true;
             }
             return false;
@@ -233,11 +235,12 @@ namespace SzachyWPF
                 plansza[ruch.x1, ruch.y1] = ruch.polePierwsze as Pole;
                 plansza[ruch.x2, ruch.y2] = ruch.poleDrugie as Pole;
                 licznikRuchow--;
-                if (ruch.polePierwsze is Pionek && (ruch.y1 == 1 && (ruch.polePierwsze as Pionek).ZwrocGracza()== Gracz.CZARNE
+                if (ruch.polePierwsze is Pionek && (ruch.y1 == 1 && (ruch.polePierwsze as Pionek).ZwrocGracza() == Gracz.CZARNE
                     || ruch.y1 == 6 && (ruch.polePierwsze as Pionek).ZwrocGracza() == Gracz.BIALE))
                 {
                     (ruch.polePierwsze as Pionek).cofnijPierwszyRuch();
                 }
+
             }
         }
         /// <summary>
@@ -434,6 +437,7 @@ namespace SzachyWPF
             }
             else if (licznikRuchow % 2 == 1 && y2 == 0)
             {
+                if (czyGraKomputer == true) return false;
                 y = 0;
                 gracz = Gracz.CZARNE;
             }
@@ -453,7 +457,9 @@ namespace SzachyWPF
                 kontrolna = -1;
             }
 
-                if (plansza[4, y] is Krol && (plansza[0, y] is Wieza || plansza[7, y] is Wieza) && plansza[x1, y] is Krol)
+            if (plansza[4, y] is Krol && (plansza[4, y] as Krol).CzyWykonalPierwszyRuch == false)
+            {
+                if(plansza[0,y] is Wieza && (plansza[0, y] as Wieza).CzyWykonalPierwszyRuch == false || plansza[7, y] is Wieza && (plansza[7, y] as Wieza).CzyWykonalPierwszyRuch == false)
                 {
                     if ((x2 == 2 || x2 == 6) && (y == 7 || y == 0))
                     {
@@ -461,9 +467,9 @@ namespace SzachyWPF
                         {
                             plansza[x2Krola, y] = plansza[x1Krola, y];
                             plansza[x1Krola, y] = poleBezPionka;
-                            if (RuszGlowny(x1Krola + kontrolna, y, x2Krola + kontrolna, y, gracz))
+                            if (SprawdzCalyRuch(x1Krola + kontrolna, y, x2Krola + kontrolna, y, gracz))
                             {
-                                CofnijRuch();
+                               
                                 roszada.czyRoszada = true;
                                 roszada.xKrola = x1Krola;
                                 roszada.yKrola = y;
@@ -477,7 +483,8 @@ namespace SzachyWPF
                             plansza[x2Krola, y] = poleBezPionka;
                         }
                     }
-                }            
+                }
+            }
             return false;
         }
         private void WykonajRoszade()

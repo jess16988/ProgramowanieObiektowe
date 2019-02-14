@@ -32,5 +32,7 @@ namespace SzachyWPF
         {
             return this.SprawdzRuchNaPustejPlanszy(x1, y1, x2, y2);
         }
+        //pola
+        public bool CzyWykonalPierwszyRuch = false;
     }
 }
