@@ -120,7 +120,11 @@ namespace SzachyWPF
                 WyczyscPrzeloty();
                 kontrolki.Sprawdz();
                 promocja.Sprawdz(x2, y2, plansza[x2, y2]);
-                if ((y2 - y1 == 2 || y2 - y1 == -2) && plansza[x2,y2] is Pionek)
+                if ((y2 - y1 == 2) && plansza[x2,y2] is Pionek && czyGraKomputer)
+                {
+                    return false;
+                }
+                else if ((y2 - y1 == 2 || y2 - y1 == -2) && plansza[x2,y2] is Pionek)
                 {                                     
                     Przelot przelot = new Przelot(gracz, x2, (y2 + y1) / 2, licznikRuchow,x2,y2);
                     plansza[x1, ((y2 + y1) / 2)] = przelot;
